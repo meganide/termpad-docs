@@ -8,7 +8,16 @@ After an AI completes work, you need to review the changes before committing. Th
 ## Prerequisites
 
 - Git installed and configured
-- GitHub CLI (`gh`) installed and authenticated (run `gh auth login` if not already authenticated)
+
+<Info>
+  GitHub CLI (`gh`) is optional. It's only needed for:
+  - Creating pull requests
+  - Viewing PR status badges on branches
+  - Browsing your GitHub repositories when cloning
+
+  All core features (reviewing, staging, committing, pushing) work without it.
+</Info>
+
 
 ## Viewing Changes
 
@@ -25,6 +34,10 @@ After an AI completes work, you need to review the changes before committing. Th
 
 <Tip>
   You can also open the diff viewer by clicking the eye icon in the source control header.
+</Tip>
+
+<Tip>
+  Prefer reviewing in your own editor? Click the "Open in Editor" button in the top toolbar to open the worktree in VS Code, Cursor, or your configured editor. This is useful for manual changes or reviewing diffs in a familiar environment.
 </Tip>
 
 ### Understanding file status
