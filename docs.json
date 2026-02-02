@@ -28,8 +28,7 @@
           {
             "group": "Features",
             "pages": [
-              "features/parallel-worktrees",
-              "features/git-worktrees",
+              "features/worktrees",
               "features/terminal-management",
               "features/scripts",
               "features/code-review",

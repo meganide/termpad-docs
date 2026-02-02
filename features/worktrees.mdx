@@ -1,9 +1,9 @@
 ---
-title: Parallel Worktrees
+title: Worktrees
 description: Run multiple AI coding agents simultaneously in isolated workspaces
 ---
 
-# Parallel Worktrees
+# Worktrees
 
 The core feature of Termpad is the ability to run multiple AI coding agents at the same time, each working on different tasks without interfering with each other.
 
@@ -18,7 +18,7 @@ Traditional AI coding workflows are sequential:
 
 This wastes time. While one AI builds a feature, you could be tackling two more tasks in parallel.
 
-## How Parallel Worktrees Work
+## How Worktrees Work
 
 Each worktree in Termpad is a completely isolated environment:
 
@@ -33,9 +33,24 @@ Each worktree in Termpad is a completely isolated environment:
   Worktrees share the same git history, but file changes are isolated until you merge.
 </Info>
 
-## Creating Worktrees
+When you create a worktree, Termpad automatically:
 
-To create a new parallel worktree:
+1. Creates a new git branch (or uses an existing one)
+2. Creates a new worktree for that branch
+3. Runs your setup scripts in the new worktree
+4. Opens a terminal pointed at the worktree
+
+When you delete a worktree, Termpad:
+
+1. Runs your cleanup scripts
+2. Removes the worktree from disk
+3. Deletes the branch
+
+<Info>
+  You never need to run git worktree commands yourself. Termpad handles everything.
+</Info>
+
+## Creating Worktrees
 
 <Steps>
   <Step title="Select your project">
@@ -46,6 +61,9 @@ To create a new parallel worktree:
   </Step>
   <Step title="Name the branch">
     Enter a descriptive branch name like `feature/auth` or `fix/login-bug`.
+  </Step>
+  <Step title="Choose a base branch">
+    Select which branch to branch from (usually `origin/main`).
   </Step>
   <Step title="Start working">
     The worktree opens with a terminal ready for your AI agent.
@@ -61,6 +79,24 @@ The sidebar shows the status of each worktree:
 - **Idle** — No active processes
 
 This helps you track progress across all your parallel tasks without switching contexts.
+
+## Benefits of Worktrees
+
+### No merge conflicts while working
+
+Each AI agent works in its own worktree. Changes don't mix until you explicitly merge, so there's no risk of one AI overwriting another's work.
+
+### Full file system isolation
+
+Each worktree is a real directory with real files. This means:
+
+- Dev servers run independently
+- Build artifacts are separate
+- No file locking issues
+
+### Efficient disk usage
+
+Git worktrees share object storage, so you're not duplicating your entire repository for each worktree. Only modified files take extra space.
 
 ## Best Practices
 
@@ -84,18 +120,6 @@ For best results, choose tasks that don't overlap:
   </Tab>
 </Tabs>
 
-### Keep worktrees focused
-
-Give each worktree a single, well-defined task. This makes:
-
-- Progress easier to track
-- Changes easier to review
-- Merges cleaner
-
-### Monitor resource usage
-
-Each worktree uses memory and CPU. On most machines, 3-5 active AI worktrees work well. Watch your system resources if you notice slowdowns.
-
 ## Switching Between Worktrees
 
 Click any worktree in the sidebar to switch to it. The terminal and file changes panel update to show that worktree's state.
@@ -110,9 +134,7 @@ You can also:
 
 When a worktree's task is complete:
 
-1. Review the changes in the diff viewer
+1. Review the changes in the [diff viewer](/features/code-review)
 2. Commit and push the branch
 3. Create a PR (Termpad can do this with one click)
-4. Delete the worktree to clean up the worktree
-
-See [Review Changes](/guides/review-changes) for a detailed walkthrough.
+4. Delete the worktree to clean up
