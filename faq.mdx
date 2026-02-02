@@ -52,7 +52,7 @@ description: Frequently asked questions about Termpad
   </Accordion>
 
   <Accordion title="How many AI agents can I run at once?">
-    As many as your system can handle. Each agent uses CPU and RAM, so the practical limit depends on your hardware. Most users run 3-5 agents comfortably.
+    As many as your system can handle. Each agent uses CPU and RAM, so the practical limit depends on your hardware.
   </Accordion>
 
   <Accordion title="Do the AI tools need their own licenses?">
@@ -84,31 +84,6 @@ description: Frequently asked questions about Termpad
   </Accordion>
 </AccordionGroup>
 
-## Worktrees
-
-<AccordionGroup>
-  <Accordion title="What's the difference between a worktree and a worktree?">
-    A worktree is Termpad's concept that includes:
-    - A git worktree (isolated files on a branch)
-    - Terminals (main AI terminal + user terminals)
-    - Status tracking
-
-    The worktree is the git/file system part. The worktree is everything Termpad manages around it.
-  </Accordion>
-
-  <Accordion title="Can I have multiple worktrees on the same branch?">
-    No. Each branch can only have one worktree (and therefore one worktree) at a time. Create a new branch for each worktree.
-  </Accordion>
-
-  <Accordion title="What happens to my work if I delete a worktree?">
-    Uncommitted changes are lost. Committed work remains in the git history. Always commit and push before deleting worktrees.
-  </Accordion>
-
-  <Accordion title="Can I rename a worktree?">
-    Worktrees are tied to their branch name. To "rename" a worktree, you would need to rename the git branch, which can be done via git commands in the terminal.
-  </Accordion>
-</AccordionGroup>
-
 ## Terminals
 
 <AccordionGroup>
@@ -122,14 +97,6 @@ description: Frequently asked questions about Termpad
     - Any custom shell you configure
   </Accordion>
 
-  <Accordion title="Can I customize the terminal appearance?">
-    Yes. Go to Settings > Terminal to change:
-    - Color theme
-    - Font (uses system default)
-    - Default shell
-    - Terminal presets
-  </Accordion>
-
   <Accordion title="How do I copy/paste in the terminal?">
     - **Windows/Linux**: `Ctrl+C` to copy (or select and right-click), `Ctrl+V` to paste
     - **macOS**: `Cmd+C` to copy, `Cmd+V` to paste
@@ -137,9 +104,6 @@ description: Frequently asked questions about Termpad
     Selecting text may also copy automatically depending on your settings.
   </Accordion>
 
-  <Accordion title="Why isn't my command found?">
-    The terminal might not be loading your shell profile. Make sure the command is in your PATH, or try using the full path to the executable.
-  </Accordion>
 </AccordionGroup>
 
 ## Scripts and Automation
@@ -154,7 +118,7 @@ description: Frequently asked questions about Termpad
   </Accordion>
 
   <Accordion title="Can I use environment variables in scripts?">
-    Yes. Termpad provides variables like `$TERMPAD_SESSION`, `$TERMPAD_BRANCH`, and `$TERMPAD_PORT` that you can use in your scripts.
+    Yes. Termpad provides variables like `$TERMPAD_WORKSPACE_NAME`, `$TERMPAD_WORKSPACE_PATH`, `$TERMPAD_ROOT_PATH`, and `$TERMPAD_PORT` that you can use in your scripts. See the [Environment Variables](/guides/configure-scripts#environment-variables) section for details.
   </Accordion>
 </AccordionGroup>
 
@@ -163,7 +127,7 @@ description: Frequently asked questions about Termpad
 <AccordionGroup>
   <Accordion title="Termpad is running slowly">
     - Close unused worktrees
-    - Check system resources
+    - Check system resources (each AI agent like Claude Code uses 500-800 MB RAM)
     - Reduce the number of parallel AI agents
     - Restart the app to clear memory
   </Accordion>
@@ -181,7 +145,7 @@ description: Frequently asked questions about Termpad
   </Accordion>
 
   <Accordion title="Where can I report bugs?">
-    Open an issue on [GitHub](https://github.com/meganide/termpad-releases/issues). Include:
+    Open an issue on [GitHub](https://github.com/meganide/termpad-releases/issues) or reach out on [Twitter/X](https://x.com/Renas_Dev). Include:
     - Your OS and version
     - Steps to reproduce
     - Error messages
@@ -189,18 +153,3 @@ description: Frequently asked questions about Termpad
   </Accordion>
 </AccordionGroup>
 
-## Future Plans
-
-<AccordionGroup>
-  <Accordion title="Will Termpad always be free?">
-    The app is free during the public beta. Future pricing hasn't been announced, but the goal is to keep it accessible.
-  </Accordion>
-
-  <Accordion title="What features are planned?">
-    Check the [GitHub releases page](https://github.com/meganide/termpad-releases/releases) for announcements and the roadmap.
-  </Accordion>
-
-  <Accordion title="Can I request features?">
-    Yes! Open a feature request on [GitHub](https://github.com/meganide/termpad-releases/issues).
-  </Accordion>
-</AccordionGroup>
