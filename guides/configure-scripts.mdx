@@ -18,20 +18,11 @@ Termpad supports three types of scripts:
 ## Configuring Scripts
 
 <Steps>
-  <Step title="Select your project">
-    Click on a project in the sidebar.
-  </Step>
   <Step title="Open project settings">
     Click the gear icon next to the project name.
   </Step>
-  <Step title="Navigate to Scripts">
-    Find the scripts configuration section.
-  </Step>
   <Step title="Add your scripts">
     Enter commands for each script type.
-  </Step>
-  <Step title="Save">
-    Click Save to apply your changes.
   </Step>
 </Steps>
 
@@ -44,17 +35,21 @@ Setup scripts run automatically when you create a new worktree. Use them for:
 - Building initial assets
 - Starting background services
 
+<Note>
+  Scripts run in the default shell/terminal you configured in your settings. Write your commands using the syntax for that shell.
+</Note>
+
+<Info>
+  Creating worktrees by default doesn't include any files in your `.gitignore`. If you have `.env` variables in your main branch and want them brought over to the worktree, add that to your setup script.
+</Info>
+
 ### Examples
 
 <Tabs>
   <Tab title="Node.js">
     ```bash
-    npm install
-    ```
-
-    Or with additional setup:
-    ```bash
-    npm install && npm run build:types
+    # Copy .env file
+    cp $TERMPAD_ROOT_PATH/.env .env && npm install
     ```
   </Tab>
   <Tab title="Python">
@@ -74,10 +69,6 @@ Setup scripts run automatically when you create a new worktree. Use them for:
   </Tab>
 </Tabs>
 
-<Tip>
-  Keep setup scripts fast. Long setup times slow down worktree creation.
-</Tip>
-
 ## Run Scripts
 
 Run scripts are manually triggered commands for common tasks. You can have multiple run scripts per project.
@@ -93,9 +84,6 @@ Run scripts are manually triggered commands for common tasks. You can have multi
   </Step>
   <Step title="Configure the script">
     Enter a name (e.g., "Dev Server") and the command.
-  </Step>
-  <Step title="Set options">
-    Configure exclusive mode if needed.
   </Step>
 </Steps>
 
@@ -116,7 +104,7 @@ Run scripts are manually triggered commands for common tasks. You can have multi
     Click on the worktree where you want to run the script.
   </Step>
   <Step title="Click Run">
-    Click the **Run** button in the toolbar.
+    Click the **Run** button in the terminals section/panel at the bottom right.
   </Step>
   <Step title="Choose a script">
     Select which script to run from the dropdown.
@@ -137,35 +125,22 @@ When you run an exclusive script:
   Exclusive mode kills the script in other worktrees. Only use it when necessary.
 </Warning>
 
+<Note>
+  Exclusive mode only detects scripts run using the Run Script feature. It won't detect if you manually run the same command in your terminal.
+</Note>
+
 ## Cleanup Scripts
 
-Cleanup scripts run when you delete a worktree. Use them for:
+Cleanup scripts run when you delete a worktree. When deleting a worktree, Termpad automatically removes the entire worktree directory.
 
-- Stopping running processes
-- Removing build artifacts
-- Cleaning temporary files
-- Resetting state
+Cleanup scripts are useful for doing operations outside the working tree, for example removing build artifacts if applicable.
 
-### Examples
+### Example
 
-<Tabs>
-  <Tab title="Node.js">
-    ```bash
-    rm -rf node_modules/.cache dist
-    ```
-  </Tab>
-  <Tab title="Python">
-    ```bash
-    rm -rf __pycache__ .pytest_cache .venv
-    ```
-  </Tab>
-  <Tab title="General">
-    ```bash
-    # Kill any processes started by this worktree
-    pkill -f "$(pwd)" || true
-    ```
-  </Tab>
-</Tabs>
+```bash
+# Remove build artifacts outside the worktree
+rm -rf $TERMPAD_ROOT_PATH/.build-cache || true
+```
 
 ## Environment Variables
 
@@ -173,17 +148,16 @@ Scripts have access to Termpad-provided environment variables:
 
 | Variable | Description |
 |----------|-------------|
-| `TERMPAD_SESSION` | Name of the current worktree |
-| `TERMPAD_BRANCH` | Current git branch name |
-| `TERMPAD_WORKTREE` | Full path to the worktree directory |
-| `TERMPAD_PORT` | Unique port number (if port management enabled) |
+| `TERMPAD_WORKSPACE_NAME` | Workspace name |
+| `TERMPAD_WORKSPACE_PATH` | Workspace path |
+| `TERMPAD_ROOT_PATH` | Repository root directory path |
+| `TERMPAD_PORT` | Unique port for this worktree (100 ports available per repository) |
 
 ### Using environment variables
 
 ```bash
 # In a run script
-echo "Starting server for $TERMPAD_BRANCH on port $TERMPAD_PORT"
-PORT=$TERMPAD_PORT npm run dev
+npm run dev --port $TERMPAD_PORT
 ```
 
 ## Smart Port Management
@@ -191,18 +165,15 @@ PORT=$TERMPAD_PORT npm run dev
 Avoid port conflicts when running dev servers across worktrees:
 
 <Steps>
-  <Step title="Enable port management">
-    In project settings, enable **Smart Port Management**.
-  </Step>
   <Step title="Configure your scripts">
     Use `$TERMPAD_PORT` in your run scripts:
 
     ```bash
-    PORT=$TERMPAD_PORT npm run dev
+    npm run dev --port $TERMPAD_PORT
     ```
   </Step>
   <Step title="Each worktree gets a unique port">
-    Worktree 1 might get port 3000, worktree 2 gets 3001, etc.
+    Each worktree receives a unique port from a pool of 100 ports available per repository.
   </Step>
 </Steps>
 
