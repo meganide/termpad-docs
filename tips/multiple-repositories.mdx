@@ -1,0 +1,20 @@
+---
+title: Multiple Repositories
+description: Working with multiple repositories in Termpad
+---
+
+Termpad supports using multiple repositories at once. While the experience isn't perfect yet, here are some tips for working across repositories (for example, a separate backend repo and frontend repo):
+
+## Current workflow
+
+1. Open each repository in Termpad
+2. Create worktrees in each repository using matching branch names to easily track related work
+3. In Claude Code, use the `/add-dir` command to add the other corresponding working directory so the AI can access both folders (similar commands likely exist for other AI CLIs)
+
+## Running multiple services
+
+To run multiple services from different repositories at once, create a run script for each repository. Each worktree can run its own service independently.
+
+<Note>
+**Coming soon:** A feature is being developed to make working with multiple repositories more seamless and automatic, built directly into the app.
+</Note>

@@ -38,6 +38,12 @@
             ]
           },
           {
+            "group": "Tips",
+            "pages": [
+              "tips/multiple-repositories"
+            ]
+          },
+          {
             "group": "Support",
             "pages": [
               "faq"
