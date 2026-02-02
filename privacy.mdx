@@ -1,0 +1,124 @@
+---
+title: Privacy Policy
+description: Learn how Termpad handles your data and protects your privacy
+---
+
+**Last Updated: February 2026**
+
+## TL;DR
+
+Termpad is completely private. Your data stays on your computer. We don't collect analytics, track usage, or send your data anywhere. Period.
+
+## What We Do With Your Data
+
+### Everything Stays Local
+
+All your data is stored on your computer in Electron's standard data directory:
+
+- **Windows**: `C:\Users\{username}\AppData\Local\Termpad`
+- **macOS**: `~/Library/Application Support/Termpad`
+- **Linux**: `~/.config/Termpad`
+
+**What we store locally:**
+
+- Repository paths and names
+- Git branch information (whatever your git repository already has)
+- Terminal session states and tab configurations
+- Your preferences (theme, shell, window size, etc.)
+- Code review/diff data (stored locally in the reviews folder)
+- Custom scripts and terminal presets you configure
+
+**What we DON'T store:**
+
+- No passwords or API keys (GitHub authentication uses your local `gh` CLI)
+- No terminal command history beyond the current session
+- No terminal output (cleared when you close a session)
+
+### No Analytics, No Telemetry, No Tracking
+
+We don't use any analytics or tracking services. None. Zero. Nada.
+
+- No Sentry, Mixpanel, Google Analytics, or similar services
+- No crash reporting to external servers
+- No usage statistics collection
+- No error tracking services
+- No performance monitoring that phones home
+
+The console logs you might see are for debugging purposes only and never leave your machine.
+
+### Network Requests (The Only Times We Connect)
+
+Termpad only connects to the internet for:
+
+1. **GitHub Integration (Optional)**
+   - If you use GitHub features, we use your local `gh` CLI to fetch PR statuses and repository lists
+   - We never store your GitHub credentials - authentication is handled by the GitHub CLI you've already logged into
+   - All GitHub API calls go through your authenticated `gh` CLI tool
+   - You can use Termpad without GitHub integration entirely
+
+2. **Auto-Updates (Optional, On-Demand)**
+   - When you manually check for updates, we check GitHub releases for new versions
+   - No automatic background checks - you initiate this
+   - No data is sent with update requests, just a standard release check
+
+3. **Git Operations You Initiate**
+   - When you push, pull, or fetch from your remote repositories
+   - These are standard git operations you control
+
+That's it. No other network activity.
+
+### What We Share (Hint: Nothing)
+
+We don't share, sell, or transmit your data to anyone because:
+
+1. We don't collect it in the first place
+2. Everything stays on your machine
+3. There's no backend server to send data to
+
+### Data You Control
+
+You have complete control over your data:
+
+- **Delete your data**: Just delete the Termpad data folder (see paths above)
+- **Export your data**: Your data is stored in plain JSON files you can read and backup
+- **Clear git cache**: Built into the app (clears in-memory caching only)
+
+### Security
+
+- All data is stored in your OS-protected user directory
+- No cloud storage or synchronization
+- Terminal sessions are isolated per worktree
+- GitHub authentication uses your local credentials, not managed by us
+
+### Third-Party Services
+
+Termpad integrates with these tools/services:
+
+- **GitHub CLI (`gh`)**: Local tool you install and authenticate yourself
+- **Git**: Your local git installation
+- **electron-updater**: Only checks GitHub Releases for app updates (no tracking)
+- **Node.js libraries**: Standard open-source packages for terminal handling, notifications, etc.
+
+None of these send your data to us.
+
+### Changes to This Policy
+
+If we ever change how we handle data, we'll update this document and the "Last Updated" date at the top. Any material changes will be communicated through app updates.
+
+### Questions or Concerns?
+
+If you have questions about privacy or data handling, please [create an issue on GitHub](https://github.com/meganide/termpad-releases/issues) or reach out on [Twitter](https://x.com/Renas_Dev).
+
+### Summary
+
+**We collect**: Nothing
+
+**We track**: Nothing
+
+**We share**: Nothing
+
+**We store remotely**: Nothing
+
+**Your data**: Stays on your machine, always
+
+Termpad is a tool that respects your privacy because we believe your code, your workflow, and your data are yours alone.
