@@ -46,7 +46,19 @@
           {
             "group": "Support",
             "pages": [
-              "faq"
+              "faq",
+              "privacy"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Changelog",
+        "groups": [
+          {
+            "group": "Release History",
+            "pages": [
+              "changelog"
             ]
           }
         ]

@@ -39,6 +39,23 @@
 - Commit frequently throughout development
 - NEVER skip or disable pre-commit hooks
 
+## Changelogs
+- Use `<Update>` components for all changelog entries
+- Each Update must have `label` (date) and `description` (version) properties
+- Include `rss: true` in changelog frontmatter for RSS feed support
+- Add `tags` array to Updates for filtering capability (e.g., tags={["Features", "Bug Fixes"]})
+- RSS feed publishes at page URL + /rss.xml
+- Each Update label creates table of contents entry automatically
+- Updates support markdown, links, images, and demos
+- RSS feeds contain pure Markdown only - use `rss` property for alternative text if needed
+
+### Changelog update format
+```mdx
+<Update label="Month Year" description="vX.X.X" tags={["Category"]}>
+  Content goes here with markdown support
+</Update>
+```
+
 ## Do not
 - Skip frontmatter on any MDX file
 - Use absolute URLs for internal links
