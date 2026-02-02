@@ -18,12 +18,11 @@ Click the **+** button in the terminal area to create a new tab. You can:
 
 - Open a plain shell
 - Use a preset (see below)
-- Run a specific command
 
 ### Managing tabs
 
 - **Drag and drop** tabs to reorder them
-- **Right-click** a tab for options (rename, close, duplicate)
+- **Right-click** a tab for options (rename, close)
 - **Click the X** to close a tab
 
 ## Shell Support
@@ -58,7 +57,7 @@ If your shell isn't detected automatically:
   <Step title="Open Settings">
     Navigate to terminal settings.
   </Step>
-  <Step title="Click Add Shell">
+  <Step title="Click Add Custom Shell">
     Open the custom shell dialog.
   </Step>
   <Step title="Configure the shell">
@@ -68,12 +67,10 @@ If your shell isn't detected automatically:
 
 ## Terminal Presets
 
-Presets let you create new terminals with predefined commands. Common uses:
+Presets let you create new terminals with predefined commands. You can include flags in your commands (e.g., `claude --dangerously-skip-permissions`). Common uses:
 
 - **Claude preset** — Opens a terminal and runs `claude`
 - **Gemini preset** — Opens a terminal and runs `gemini`
-- **Dev server preset** — Starts your development server
-- **Test preset** — Runs your test suite
 
 ### Creating a preset
 
@@ -117,11 +114,12 @@ Common terminal shortcuts:
 |--------|----------|
 | New tab | `Ctrl+T` / `Cmd+T` |
 | Close tab | `Ctrl+W` / `Cmd+W` |
-| Next tab | `Ctrl+Tab` |
-| Previous tab | `Ctrl+Shift+Tab` |
+| Switch to tab 1-10 | `Ctrl+1` to `Ctrl+0` / `Cmd+1` to `Cmd+0` |
 | Clear terminal | `Ctrl+L` / `Cmd+K` |
 | Copy | `Ctrl+C` / `Cmd+C` (when text selected) |
 | Paste | `Ctrl+V` / `Cmd+V` |
+
+View all keyboard shortcuts in **Settings > Keyboard Shortcuts**.
 
 ## WSL Support (Windows)
 

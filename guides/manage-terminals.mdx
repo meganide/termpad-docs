@@ -25,7 +25,6 @@ Worktrees can have multiple terminal tabs:
     Select from:
     - Plain shell
     - A preset (pre-configured command)
-    - Custom command
   </Step>
 </Steps>
 
@@ -37,7 +36,6 @@ Worktrees can have multiple terminal tabs:
 | Reorder tabs | Drag and drop |
 | Close tab | Click the X on the tab |
 | Rename tab | Right-click > Rename |
-| Duplicate tab | Right-click > Duplicate |
 
 ### Keyboard navigation
 
@@ -45,13 +43,13 @@ Worktrees can have multiple terminal tabs:
 |----------|--------|
 | `Ctrl+T` / `Cmd+T` | New tab |
 | `Ctrl+W` / `Cmd+W` | Close tab |
-| `Ctrl+Tab` | Next tab |
-| `Ctrl+Shift+Tab` | Previous tab |
-| `Ctrl+1-9` / `Cmd+1-9` | Jump to tab |
+| `Ctrl+1` to `Ctrl+0` / `Cmd+1` to `Cmd+0` | Switch to tab 1-10 |
+
+View all keyboard shortcuts in **Settings > Keyboard Shortcuts**.
 
 ## Terminal Presets
 
-Presets let you quickly create terminals with specific commands already running.
+Presets let you quickly create terminals with specific commands already running. Commands can include flags (e.g., `claude --dangerously-skip-permissions`).
 
 ### Creating a preset
 
@@ -83,9 +81,6 @@ Presets let you quickly create terminals with specific commands already running.
 | Claude | `claude` | Claude Code AI agent |
 | Gemini | `gemini` | Google Gemini AI agent |
 | Aider | `aider` | Aider AI assistant |
-| Dev Server | `npm run dev` | Development server |
-| Tests | `npm test -- --watch` | Test runner in watch mode |
-| Git | - | Plain shell for git commands |
 
 ### Using presets
 
