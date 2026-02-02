@@ -9,8 +9,8 @@ Each worktree in Termpad has a full terminal emulator. This guide covers how to 
 
 Worktrees can have multiple terminal tabs:
 
-- **Main terminal**: Where your AI agent runs
-- **User terminals**: Additional terminals for other tasks
+- **Main terminals**: For running AI CLIs (you can have many)
+- **User terminals**: For running other tasks like tests, dev servers, builds, etc.
 
 ### Creating a new tab
 
@@ -24,7 +24,7 @@ Worktrees can have multiple terminal tabs:
   <Step title="Choose how to open">
     Select from:
     - Plain shell
-    - A preset (pre-configured command)
+    - A preset (pre-configured command, like claude, codex, etc.)
   </Step>
 </Steps>
 
@@ -41,15 +41,17 @@ Worktrees can have multiple terminal tabs:
 
 | Shortcut | Action |
 |----------|--------|
-| `Ctrl+T` / `Cmd+T` | New tab |
-| `Ctrl+W` / `Cmd+W` | Close tab |
-| `Ctrl+1` to `Ctrl+0` / `Cmd+1` to `Cmd+0` | Switch to tab 1-10 |
+| `Ctrl+T` / `⌃T` | Switch to main terminal |
+| `Ctrl+U` / `⌃U` | Switch to user terminal |
+| `Ctrl+W` / `⌃W` | New tab |
+| `Ctrl+Q` / `⌃Q` | Close tab |
+| `Ctrl+1-9` / `⌘1-9` | Switch to tab 1-9 |
 
 View all keyboard shortcuts in **Settings > Keyboard Shortcuts**.
 
 ## Terminal Presets
 
-Presets let you quickly create terminals with specific commands already running. Commands can include flags (e.g., `claude --dangerously-skip-permissions`).
+Presets let you create terminals that automatically run your preset command. Commands can include flags (e.g., `claude --dangerously-skip-permissions`).
 
 ### Creating a preset
 
@@ -58,7 +60,7 @@ Presets let you quickly create terminals with specific commands already running.
     Click the gear icon to open settings.
   </Step>
   <Step title="Go to Terminal Presets">
-    Find the presets configuration section.
+    Click the terminal tab and find the preset configuration section.
   </Step>
   <Step title="Click Add Preset">
     Click the button to create a new preset.
@@ -69,9 +71,6 @@ Presets let you quickly create terminals with specific commands already running.
     - **Command**: What command to run (e.g., `claude`)
     - **Icon**: Which icon to display
   </Step>
-  <Step title="Save">
-    Save your preset.
-  </Step>
 </Steps>
 
 ### Suggested presets
@@ -80,7 +79,7 @@ Presets let you quickly create terminals with specific commands already running.
 |------|---------|---------|
 | Claude | `claude` | Claude Code AI agent |
 | Gemini | `gemini` | Google Gemini AI agent |
-| Aider | `aider` | Aider AI assistant |
+| Codex | `codex` | Codex AI assistant |
 
 ### Using presets
 
@@ -130,9 +129,6 @@ If your shell isn't automatically detected:
     - **Path**: Full path to the executable
     - **Args**: Any arguments to pass
   </Step>
-  <Step title="Save">
-    Save and select as default if desired.
-  </Step>
 </Steps>
 
 ## Terminal Themes
@@ -144,7 +140,7 @@ Customize the terminal appearance:
     Navigate to terminal settings.
   </Step>
   <Step title="Find Theme">
-    Look for the terminal theme selector.
+    It's in the appearance tab in the terminal theme section.
   </Step>
   <Step title="Choose a theme">
     Select from available themes:
@@ -163,8 +159,8 @@ Customize the terminal appearance:
 
 | Action | Windows/Linux | macOS |
 |--------|--------------|-------|
-| Copy | `Ctrl+Shift+C` or select text | `Cmd+C` or select text |
-| Paste | `Ctrl+Shift+V` | `Cmd+V` |
+| Copy | `Ctrl+C` or select and right-click | `Cmd+C` or select text |
+| Paste | `Ctrl+V` | `Cmd+V` |
 
 Many terminals also copy on select—just selecting text copies it to clipboard.
 
@@ -177,18 +173,12 @@ Many terminals also copy on select—just selecting text copies it to clipboard.
 
 Or type `clear` in the terminal.
 
-### Search terminal output
-
-Press `Ctrl+Shift+F` or `Cmd+F` to search through terminal output.
-
 ### Scroll through history
 
 | Action | Shortcut |
 |--------|----------|
 | Scroll up | `Shift+Page Up` or mouse wheel |
 | Scroll down | `Shift+Page Down` or mouse wheel |
-| Jump to top | `Shift+Home` |
-| Jump to bottom | `Shift+End` |
 
 ## WSL Support (Windows)
 
@@ -212,24 +202,3 @@ Termpad fully supports Windows Subsystem for Linux:
 
 Termpad automatically handles path translation between Windows and WSL, so your projects work seamlessly.
 
-## Tips
-
-### Keep terminal output visible
-
-When an AI is working, keep the terminal visible so you can:
-
-- See progress
-- Catch errors early
-- Answer questions promptly
-
-### Use dedicated terminals for services
-
-Run long-running processes (dev servers, watchers) in separate tabs so they don't clutter your main AI terminal.
-
-### Name your tabs
-
-Right-click and rename tabs to keep track of what's running where:
-
-- "Claude - Auth Feature"
-- "Dev Server (3000)"
-- "Test Watcher"
