@@ -5,18 +5,27 @@ description: Review, stage, commit, and push changes from your worktrees
 
 After an AI completes work, you need to review the changes before committing. This guide walks through the full review and commit workflow.
 
+## Prerequisites
+
+- Git installed and configured
+- GitHub CLI (`gh`) installed and authenticated (run `gh auth login` if not already authenticated)
+
 ## Viewing Changes
 
-### Open the file changes panel
+### Open the source control panel
 
 <Steps>
   <Step title="Select a worktree">
     Click on the worktree you want to review.
   </Step>
-  <Step title="View the changes panel">
-    The file changes panel shows on the side. It lists all files with changes.
+  <Step title="View the source control panel">
+    The source control panel shows on the side. It lists all files with changes.
   </Step>
 </Steps>
+
+<Tip>
+  You can also open the diff viewer by clicking the eye icon in the source control header.
+</Tip>
 
 ### Understanding file status
 
@@ -32,7 +41,7 @@ Files are marked with their status:
 
 ### View a file diff
 
-Click any file in the changes panel to see its diff:
+Click any file in the source control panel to see its diff:
 
 - **Red lines**: Removed content
 - **Green lines**: Added content
@@ -72,13 +81,13 @@ When reviewing AI-generated code, check for:
 
 <Steps>
   <Step title="Click on a line">
-    Click the line number where you want to comment.
+    Click the line number where you want to comment. For multi-line comments, click a line number, hold, and drag to select multiple lines.
   </Step>
   <Step title="Write your comment">
     Describe what needs to change.
   </Step>
   <Step title="Copy to AI">
-    Copy the comment to paste into your AI chat for fixes.
+    Click the copy button in the header to automatically copy all comments and paste them into your AI chat. Alternatively, click the export button and feed that to the AI.
   </Step>
 </Steps>
 
@@ -98,20 +107,12 @@ Click **Stage All** to stage everything at once.
 
 <Steps>
   <Step title="Find the file">
-    Locate the file in the changes panel.
+    Locate the file in the source control panel.
   </Step>
   <Step title="Stage it">
-    Click the **+** icon next to the file, or right-click and select **Stage**.
+    Click the **+** icon next to the file.
   </Step>
 </Steps>
-
-### Stage partial changes
-
-For files where you only want some changes:
-
-1. Open the file diff
-2. Select the lines you want to keep
-3. Click **Stage Selected**
 
 ### Unstage files
 
@@ -122,9 +123,39 @@ If you staged something by mistake:
     Look in the "Staged Changes" section.
   </Step>
   <Step title="Unstage it">
-    Click the **-** icon, or right-click and select **Unstage**.
+    Click the **-** icon.
   </Step>
 </Steps>
+
+## Discarding Changes
+
+If you don't want to keep the changes:
+
+### Discard all changes
+
+<Steps>
+  <Step title="Click Discard All">
+    In the source control panel, click **Discard All**.
+  </Step>
+  <Step title="Confirm">
+    Confirm you want to discard. This cannot be undone.
+  </Step>
+</Steps>
+
+### Discard specific files
+
+<Steps>
+  <Step title="Find the file">
+    Locate the file in the source control panel.
+  </Step>
+  <Step title="Discard it">
+    Click the discard icon next to the file.
+  </Step>
+</Steps>
+
+<Warning>
+  Discarding changes permanently deletes uncommitted work. Make sure you don't need it before discarding.
+</Warning>
 
 ## Committing Changes
 
@@ -149,13 +180,9 @@ If you staged something by mistake:
   </Step>
 </Steps>
 
-### Writing good commit messages
-
-| Good | Poor |
-|------|------|
-| `Add email validation to signup form` | `fix bug` |
-| `Fix null pointer in user service when profile missing` | `updates` |
-| `Refactor API client to use async/await` | `changes` |
+<Tip>
+  You can also ask your AI to commit the changes for you. It will review the changes and create an appropriate commit message.
+</Tip>
 
 ## Pushing Changes
 
@@ -163,24 +190,15 @@ After committing, push to the remote:
 
 <Steps>
   <Step title="Click Push">
-    Click the **Push** button in the toolbar.
-  </Step>
-  <Step title="Authenticate if needed">
-    If prompted, authenticate with your git provider.
-  </Step>
-  <Step title="Confirm success">
-    You should see a success message when the push completes.
+    Click the arrow up icon in the toolbar.
   </Step>
 </Steps>
 
 ## Creating a Pull Request
 
 <Steps>
-  <Step title="Push your branch">
-    Make sure your commits are pushed.
-  </Step>
   <Step title="Click Create PR">
-    Click the **Create PR** button.
+    Click the Create PR icon in the toolbar (beside the push button).
   </Step>
   <Step title="Fill in PR details">
     Termpad opens your browser to the PR creation page. Fill in:
@@ -189,44 +207,11 @@ After committing, push to the remote:
     - Reviewers
     - Labels
   </Step>
-  <Step title="Submit">
-    Create the pull request.
-  </Step>
 </Steps>
 
 <Info>
   Creating PRs requires the GitHub CLI (`gh`) to be installed and authenticated.
 </Info>
-
-## Discarding Changes
-
-If you don't want to keep the changes:
-
-### Discard all changes
-
-<Steps>
-  <Step title="Click Discard All">
-    In the changes panel, click **Discard All**.
-  </Step>
-  <Step title="Confirm">
-    Confirm you want to discard. This cannot be undone.
-  </Step>
-</Steps>
-
-### Discard specific files
-
-<Steps>
-  <Step title="Find the file">
-    Locate the file in the changes panel.
-  </Step>
-  <Step title="Discard it">
-    Right-click and select **Discard Changes**.
-  </Step>
-</Steps>
-
-<Warning>
-  Discarding changes permanently deletes uncommitted work. Make sure you don't need it before discarding.
-</Warning>
 
 ## Tips
 
@@ -246,7 +231,3 @@ Make each commit a logical unit of work:
 - One feature per commit
 - One bug fix per commit
 - Don't mix unrelated changes
-
-### Keep the main terminal visible
-
-While reviewing, keep the AI terminal visible. If you find issues, you can immediately ask for fixes.

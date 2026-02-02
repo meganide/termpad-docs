@@ -33,6 +33,7 @@
               "guides/configure-scripts",
               "guides/manage-terminals",
               "guides/review-changes",
+              "guides/git-hooks",
               "guides/notifications"
             ]
           },

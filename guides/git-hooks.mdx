@@ -1,0 +1,92 @@
+---
+title: Git Hooks Support
+description: How Termpad handles git hooks and Husky integration
+---
+
+Termpad supports running git hooks automatically during git operations. This includes both standard git hooks and Husky-managed hooks.
+
+## Supported Hook Types
+
+| Hook | When it runs | Blocking? |
+|------|-------------|-----------|
+| **pre-commit** | Before commit | Yes - blocks commit on failure |
+| **commit-msg** | During commit (message validation) | Yes - blocks commit on failure |
+| **post-commit** | After commit succeeds | No - shows error but commit already succeeded |
+| **pre-push** | Before push | Yes - blocks push on failure |
+| **post-push** | After push succeeds | No - shows error but push already succeeded |
+
+## How Hooks Work
+
+### Blocking Hooks
+
+Hooks like `pre-commit`, `commit-msg`, and `pre-push` will prevent the operation from completing if they fail:
+
+- **pre-commit**: Runs before creating the commit. If it fails, the commit is not created.
+- **commit-msg**: Validates the commit message. If it fails, the commit is not created.
+- **pre-push**: Runs before pushing to remote. If it fails, the push is cancelled.
+
+### Non-Blocking Hooks
+
+Hooks like `post-commit` and `post-push` run after the operation completes:
+
+- **post-commit**: Runs after the commit is created. If it fails, an error is shown but the commit remains.
+- **post-push**: Runs after the push succeeds. If it fails, an error is shown but the push is already complete.
+
+## Husky Support
+
+Termpad supports Husky v9+ directory structure:
+
+- Works with `.husky/` directory
+- Automatically detects and runs Husky hooks
+- No additional configuration needed
+
+<Info>
+  If you're using Husky, make sure it's installed and configured in your repository. Termpad will automatically detect and run your Husky hooks.
+</Info>
+
+## Common Use Cases
+
+### Code Formatting
+
+Run formatters like Prettier or Black before commits:
+
+```bash
+# .husky/pre-commit or .git/hooks/pre-commit
+npm run format
+```
+
+### Linting
+
+Check code quality before commits:
+
+```bash
+# .husky/pre-commit or .git/hooks/pre-commit
+npm run lint
+```
+
+### Lint Staged Files
+
+Run linters and formatters only on staged files:
+
+```bash
+# .husky/pre-commit or .git/hooks/pre-commit
+npx lint-staged
+```
+
+### Commit Message Validation
+
+Enforce commit message conventions:
+
+```bash
+# .husky/commit-msg or .git/hooks/commit-msg
+npx commitlint --edit $1
+```
+
+### Running Tests
+
+Run tests before pushing:
+
+```bash
+# .husky/pre-push or .git/hooks/pre-push
+npm test
+```
