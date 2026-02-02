@@ -1,9 +1,24 @@
 ---
-title: Create a Worktree
-description: Create isolated workspaces with git worktrees for parallel development
+title: Worktrees
+description: Run multiple AI coding agents simultaneously in isolated workspaces
 ---
 
-Worktrees are isolated workspaces where you run AI agents. Each worktree has its own git worktree, terminal, and branch. This guide shows you how to create and manage worktrees.
+Worktrees are the core feature of Termpad—isolated workspaces where you run AI agents in parallel. Each worktree has its own copy of your codebase, terminal, and branch, so multiple AI agents can work simultaneously without interfering with each other.
+
+## Why Worktrees Matter
+
+Traditional AI coding workflows are sequential: give an AI a task, wait for it to finish, review, then start the next. This wastes time. With worktrees, while one AI builds a feature, you can have others tackling different tasks in parallel.
+
+| Component | Isolation |
+|-----------|-----------|
+| Git worktree | Each worktree has its own copy of the codebase |
+| Terminal | Separate terminal instance per worktree |
+| Branch | Each worktree works on its own branch |
+| Ports | Configurable port assignments to avoid conflicts |
+
+<Info>
+  Worktrees share the same git history, but file changes are isolated until you merge.
+</Info>
 
 ## Prerequisites
 
@@ -145,6 +160,26 @@ When a worktree's work is complete:
 </Warning>
 
 ## Best Practices
+
+### Choose independent tasks
+
+For best results, choose tasks that don't overlap:
+
+<Tabs>
+  <Tab title="Good">
+    - Worktree 1: Build login page
+    - Worktree 2: Build settings page
+    - Worktree 3: Add API rate limiting
+
+    These tasks touch different files and won't conflict.
+  </Tab>
+  <Tab title="Avoid">
+    - Worktree 1: Refactor user model
+    - Worktree 2: Add user preferences
+
+    These might both modify the same files, causing merge conflicts later.
+  </Tab>
+</Tabs>
 
 ### One task per worktree
 

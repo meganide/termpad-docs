@@ -26,29 +26,19 @@
             ]
           },
           {
-            "group": "Features",
-            "pages": [
-              "features/worktrees",
-              "features/terminal-management",
-              "features/scripts",
-              "features/code-review",
-              "features/notifications"
-            ]
-          },
-          {
-            "group": "How-to Guides",
+            "group": "Guides",
             "pages": [
               "guides/add-project",
               "guides/create-worktree",
               "guides/configure-scripts",
               "guides/manage-terminals",
-              "guides/review-changes"
+              "guides/review-changes",
+              "guides/notifications"
             ]
           },
           {
             "group": "Support",
             "pages": [
-              "troubleshooting",
               "faq"
             ]
           }

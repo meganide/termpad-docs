@@ -7,8 +7,11 @@ This guide shows you how to add a git repository to Termpad so you can start cre
 
 ## Prerequisites
 
-- A local git repository (clone one if you don't have it locally yet)
-- Termpad installed and running
+You need one of the following:
+
+- **A local git repository** — already cloned on your machine
+- **A repository on your GitHub account** — requires [GitHub CLI](https://cli.github.com/) installed
+- **A repository URL** — HTTPS or SSH URL to clone directly
 
 ## Adding Your First Project
 
@@ -17,7 +20,10 @@ This guide shows you how to add a git repository to Termpad so you can start cre
     In the sidebar, click **Add Repository**.
   </Step>
   <Step title="Select your repository">
-    Navigate to your git repository folder and select it, or go to the **Clone** tab to clone directly from a GitHub URL.
+    Choose a tab:
+
+    - **Local** — Browse to an existing git repository on your machine
+    - **Clone Repository** — Clone from GitHub (requires GitHub CLI) or enter an HTTPS/SSH URL
   </Step>
 </Steps>
 
@@ -25,7 +31,6 @@ Your project now appears in the sidebar. You'll see:
 
 - The project name (folder name by default)
 - The current branch (usually `main` or `master`)
-- A status indicator showing git state
 
 ## Adding Multiple Projects
 
@@ -35,36 +40,24 @@ You can reorder projects by dragging them in the sidebar.
 
 ## Project Requirements
 
-Termpad works with any git repository, but there are a few requirements:
+Termpad works with any git repository. The repository must have:
 
 | Requirement | Why |
 |-------------|-----|
-| Local repository | Termpad works with files on your machine |
 | Git initialized | Must have a `.git` folder |
 | At least one commit | Worktrees need a commit history to work |
 
 ## Cloning a Repository
 
-If you need to clone a repository first:
+Termpad can clone repositories directly—use the **Clone Repository** tab when adding a project. You can either select from your GitHub repositories (requires GitHub CLI) or enter an HTTPS/SSH URL.
 
-<Tabs>
-  <Tab title="Using Terminal">
-    ```bash
-    git clone https://github.com/user/repo.git
-    cd repo
-    ```
+Alternatively, clone via terminal first:
 
-    Then add the cloned folder to Termpad.
-  </Tab>
-  <Tab title="Using GitHub CLI">
-    ```bash
-    gh repo clone user/repo
-    cd repo
-    ```
+```bash
+git clone https://github.com/user/repo.git
+```
 
-    Then add the cloned folder to Termpad.
-  </Tab>
-</Tabs>
+Then add the cloned folder using the **Local** tab.
 
 ## Project Settings
 
@@ -78,62 +71,29 @@ After adding a project, configure its settings:
     Click the gear icon next to the project name.
   </Step>
   <Step title="Configure options">
-    Set up scripts, worktree location, and other project-specific settings.
+    Set up scripts for your project. See [Configure Scripts](/guides/configure-scripts) for details.
   </Step>
 </Steps>
 
-### Available settings
+## Deleting a Project
 
-| Setting | Description |
-|---------|-------------|
-| Setup script | Command to run when creating new worktrees |
-| Run scripts | Commands for common tasks (dev server, tests, etc.) |
-| Cleanup script | Command to run when deleting worktrees |
-| Worktree location | Where to store worktree folders |
-
-See [Configure Scripts](/guides/configure-scripts) for detailed script setup.
-
-## Removing a Project
-
-To remove a project from Termpad:
+To delete a project from Termpad:
 
 <Steps>
-  <Step title="Select the project">
-    Click on the project in the sidebar.
+  <Step title="Right-click the project">
+    Right-click the project in the sidebar.
   </Step>
-  <Step title="Open the context menu">
-    Right-click the project name.
+  <Step title="Click Delete Repository">
+    Select **Delete Repository** from the menu.
   </Step>
-  <Step title="Click Remove">
-    Select **Remove Project** from the menu.
+  <Step title="Choose delete option">
+    You have two options:
+
+    - **Remove from app only** — Keeps all files, just removes from Termpad
+    - **Delete completely** — Deletes the repository and all worktrees
   </Step>
 </Steps>
 
 <Warning>
-  Removing a project from Termpad also removes all its worktrees. Make sure you've committed and pushed any work you want to keep.
+  If you choose to delete completely, make sure you've committed and pushed any work you want to keep. This action cannot be undone.
 </Warning>
-
-The original repository folder is not deleted—only the worktrees managed by Termpad.
-
-## Troubleshooting
-
-### "Not a git repository" error
-
-Make sure you're selecting a folder that contains a `.git` directory. If the folder was recently initialized, you may need to make at least one commit first.
-
-### Project doesn't appear after adding
-
-Check that:
-
-1. You selected the correct folder
-2. The folder contains a valid git repository
-3. Termpad has permission to read the folder
-
-### Can't see recent commits
-
-If the project appears but shows outdated information:
-
-1. Right-click the project
-2. Select **Refresh**
-
-Or wait a few seconds—Termpad automatically refreshes git status periodically.

@@ -68,16 +68,23 @@ When reviewing AI-generated code, check for:
   </Accordion>
 </AccordionGroup>
 
-### Request changes
+### Adding inline comments
 
-If something needs fixing, tell the AI:
+<Steps>
+  <Step title="Click on a line">
+    Click the line number where you want to comment.
+  </Step>
+  <Step title="Write your comment">
+    Describe what needs to change.
+  </Step>
+  <Step title="Copy to AI">
+    Copy the comment to paste into your AI chat for fixes.
+  </Step>
+</Steps>
 
-```
-The login function doesn't handle the case where the user
-doesn't exist. Please add a check and return an appropriate error.
-```
-
-Let the AI fix issues rather than fixing them yourself.
+<Tip>
+  Instead of fixing issues yourself, send them back to the AI. Describe what's wrong and let the AI iterate.
+</Tip>
 
 ## Staging Changes
 
@@ -97,6 +104,14 @@ Click **Stage All** to stage everything at once.
     Click the **+** icon next to the file, or right-click and select **Stage**.
   </Step>
 </Steps>
+
+### Stage partial changes
+
+For files where you only want some changes:
+
+1. Open the file diff
+2. Select the lines you want to keep
+3. Click **Stage Selected**
 
 ### Unstage files
 
