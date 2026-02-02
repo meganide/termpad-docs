@@ -41,15 +41,13 @@ Traditional AI coding workflows are sequential: give an AI a task, wait for it t
     - `refactor/api-client`
     - `experiment/new-caching`
   </Step>
-  <Step title="Choose a base branch (optional)">
-    By default, new branches are based on `main`. Select a different base if needed.
+  <Step title="Choose a base branch">
+    By default, new branches are based on `origin/main`. Select a different base if needed.
   </Step>
   <Step title="Wait for setup">
     Termpad creates the worktree and runs your setup script. This may take a moment depending on your script.
   </Step>
 </Steps>
-
-A terminal opens automatically, ready for you to start an AI agent.
 
 ## Worktree Anatomy
 
@@ -63,25 +61,21 @@ Each worktree includes:
 | File changes | Shows uncommitted changes in this worktree |
 | Diff viewer | Review changes before committing |
 
-## Using an Existing Branch
+## Using an Existing Worktree
 
-If you want to work on a branch that already exists:
+If you want to import worktrees that already exist:
 
 <Steps>
   <Step title="Open Add Worktree">
     Click the **Add Worktree** button.
   </Step>
-  <Step title="Enter the existing branch name">
-    Type the exact name of the existing branch.
+  <Step title="Click the Import tab">
+    Select the **Import** tab in the dialog.
   </Step>
-  <Step title="Confirm">
-    Termpad detects the branch exists and creates a worktree for it.
+  <Step title="Select worktrees to import">
+    Termpad auto-detects all existing worktrees. Choose which ones to import/add.
   </Step>
 </Steps>
-
-<Info>
-  If a worktree already exists for that branch, Termpad shows an error. Delete the existing worktree first, or use a different branch.
-</Info>
 
 ## Worktree Workflow
 
@@ -144,13 +138,10 @@ When a worktree's work is complete:
   <Step title="Commit your work">
     Make sure all changes are committed and pushed.
   </Step>
-  <Step title="Right-click the worktree">
-    Open the context menu for the worktree.
+  <Step title="Delete the worktree">
+    Click the options icon on the worktree, then click **Remove worktree**.
   </Step>
-  <Step title="Click Delete">
-    Select **Delete Worktree** from the menu.
-  </Step>
-  <Step title="Confirm">
+  <Step title="Cleanup">
     Termpad runs cleanup scripts and removes the worktree.
   </Step>
 </Steps>
@@ -187,7 +178,6 @@ Keep worktrees focused on a single task. This makes:
 
 - Progress easier to track
 - Changes easier to review
-- Cleanup simpler
 
 ### Use descriptive branch names
 
