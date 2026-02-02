@@ -37,15 +37,6 @@
             ]
           },
           {
-            "group": "Use Cases",
-            "pages": [
-              "use-cases/feature-development",
-              "use-cases/bug-fixing",
-              "use-cases/code-review-workflow",
-              "use-cases/experimentation"
-            ]
-          },
-          {
             "group": "How-to Guides",
             "pages": [
               "guides/add-project",
