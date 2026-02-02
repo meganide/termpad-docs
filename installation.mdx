@@ -1,0 +1,125 @@
+---
+title: Installation
+description: Download and install Termpad on Windows, macOS, or Linux
+---
+
+Termpad is available for Windows, macOS, and Linux. Choose your platform below.
+
+## Download
+
+<CardGroup cols={3}>
+  <Card title="Windows" icon="windows" href="https://github.com/meganide/termpad-releases/releases">
+    Windows 10 or later
+  </Card>
+  <Card title="macOS" icon="apple" href="https://github.com/meganide/termpad-releases/releases">
+    macOS 12 (Monterey) or later
+  </Card>
+  <Card title="Linux" icon="linux" href="https://github.com/meganide/termpad-releases/releases">
+    AppImage, .deb, or .rpm
+  </Card>
+</CardGroup>
+
+## Installation Steps
+
+<Tabs>
+  <Tab title="Windows">
+    <Steps>
+      <Step title="Download the installer">
+        Download the `.exe` installer from the [releases page](https://github.com/meganide/termpad-releases/releases).
+      </Step>
+      <Step title="Run the installer">
+        Double-click the downloaded file and follow the prompts.
+      </Step>
+      <Step title="Handle security warning">
+        Windows may show a security warning because the app isn't code-signed yet. Click **More info** then **Run anyway** to proceed.
+      </Step>
+      <Step title="Launch Termpad">
+        Find Termpad in your Start menu or desktop and launch it.
+      </Step>
+    </Steps>
+
+    <Info>
+      Termpad on Windows supports automatic updates. You'll be notified when a new version is available.
+    </Info>
+  </Tab>
+  <Tab title="macOS">
+    <Steps>
+      <Step title="Download the DMG">
+        Download the `.dmg` file from the [releases page](https://github.com/meganide/termpad-releases/releases).
+      </Step>
+      <Step title="Open the DMG">
+        Double-click the downloaded file to mount it.
+      </Step>
+      <Step title="Install the app">
+        Drag Termpad to your Applications folder.
+      </Step>
+      <Step title="Handle security warning">
+        On first launch, macOS may block the app. Go to **System Preferences > Security & Privacy** and click **Open Anyway**.
+      </Step>
+    </Steps>
+
+    <Info>
+      Termpad on macOS supports automatic updates. You'll be notified when a new version is available.
+    </Info>
+  </Tab>
+  <Tab title="Linux">
+    <Steps>
+      <Step title="Download the package">
+        Download your preferred format from the [releases page](https://github.com/meganide/termpad-releases/releases):
+        - `.AppImage` — Works on any distribution, supports auto-update
+        - `.deb` — For Debian, Ubuntu, and derivatives
+        - `.rpm` — For Fedora, RHEL, and derivatives
+      </Step>
+      <Step title="Install">
+        For **AppImage**: Make it executable and run it:
+        ```bash
+        chmod +x Termpad.AppImage
+        ./Termpad.AppImage
+        ```
+
+        For **.deb** (Debian/Ubuntu):
+        ```bash
+        sudo dpkg -i termpad.deb
+        ```
+
+        For **.rpm** (Fedora/RHEL):
+        ```bash
+        sudo rpm -i termpad.rpm
+        ```
+      </Step>
+      <Step title="Launch Termpad">
+        Run the executable directly or find Termpad in your application launcher.
+      </Step>
+    </Steps>
+
+    <Info>
+      The AppImage format supports automatic updates. For .deb and .rpm, you'll need to download new versions manually.
+    </Info>
+  </Tab>
+</Tabs>
+
+## Security Warnings
+
+<Warning>
+  Termpad may trigger security warnings on first launch. This is expected behavior for apps from independent developers that don't have expensive code-signing certificates.
+</Warning>
+
+The app is safe to use. You can verify the download by checking the SHA256 checksum on the releases page.
+
+## Prerequisites
+
+Termpad works with any terminal-based tool, but for the best experience, make sure you have:
+
+- [**Git**](https://git-scm.com/downloads) installed and configured
+- [**GitHub CLI**](https://cli.github.com/) (`gh`) for PR creation features (optional)
+- Your preferred AI coding tool:
+  - [Claude Code](https://docs.anthropic.com/en/docs/claude-code)
+  - [Gemini CLI](https://github.com/google-gemini/gemini-cli)
+  - [Codex CLI](https://github.com/openai/codex)
+  - Or any other terminal-based AI assistant
+
+## Next Steps
+
+<Card title="Quickstart" icon="rocket" href="/quickstart">
+  Set up your first project and create your first worktree
+</Card>

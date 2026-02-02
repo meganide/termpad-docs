@@ -1,80 +1,139 @@
 ---
-title: "Quickstart"
-description: "Start building awesome documentation in minutes"
+title: Quickstart
+description: Get up and running with Termpad in 5 minutes
 ---
 
-## Get started in three steps
+This guide walks you through setting up your first project and running multiple AI agents in parallel.
 
-Get your documentation site running locally and make your first customization.
+## Prerequisites
 
-### Step 1: Set up your local environment
+Before you start, make sure you have:
 
-<AccordionGroup>
-  <Accordion icon="copy" title="Clone your docs locally">
-    During the onboarding process, you created a GitHub repository with your docs content if you didn't already have one. You can find a link to this repository in your [dashboard](https://dashboard.mintlify.com).
-    
-    To clone the repository locally so that you can make and preview changes to your docs, follow the [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) guide in the GitHub docs.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Start the preview server">
-    1. Install the Mintlify CLI: `npm i -g mint`
-    2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs live!
-    
-    <Tip>Your preview updates automatically as you edit files.</Tip>
-  </Accordion>
-</AccordionGroup>
+- Termpad [installed](/installation) on your machine
+- A git repository you want to work with
+- At least one AI coding tool (Claude Code, Gemini CLI, etc.)
 
-### Step 2: Deploy your changes
+## Step 1: Add a Project
 
-<AccordionGroup>
-  <Accordion icon="github" title="Install our GitHub app">
-    Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
-    
-    Our GitHub app automatically deploys your changes to your docs site, so you don't need to manage deployments yourself.
-</Accordion>
-<Accordion icon="palette" title="Update your site name and colors">
-    For a first change, let's update the name and colors of your docs site.
+<Steps>
+  <Step title="Open Termpad">
+    Launch Termpad from your applications menu or desktop.
+  </Step>
+  <Step title="Click Add Repository">
+    In the sidebar, click **Add Repository**.
+  </Step>
+  <Step title="Select your repository">
+    Navigate to your git repository folder and select it, or go to the **Clone** tab to clone directly from a GitHub URL.
+  </Step>
+</Steps>
 
-    1. Open `docs.json` in your editor.
-    2. Change the `"name"` field to your project name.
-    3. Update the `"colors"` to match your brand.
-    4. Save and see your changes instantly at `http://localhost:3000`.
+Your project now appears in the sidebar with your main branch shown.
 
-    <Tip>Try changing the primary color to see an immediate difference!</Tip>
-  </Accordion>
-</AccordionGroup>
+## Step 2: Create Your First Worktree
 
-### Step 3: Go live
+A worktree is an isolated workspace with its own git worktree and terminals. Each worktree runs independently, so changes in one worktree don't affect others.
 
-<Accordion icon="rocket" title="Publish your docs">
-  1. Commit and push your changes.
-  2. Your docs will update and be live in moments!
-</Accordion>
+<Steps>
+  <Step title="Click Add Worktree">
+    With your project selected, click the **Add Worktree** button.
+  </Step>
+  <Step title="Name your branch">
+    Enter a name for the new branch (e.g., `feature/login-page`).
+  </Step>
+  <Step title="Wait for setup">
+    Termpad creates a new git worktree and opens a terminal worktree. If you've configured setup scripts, they run automatically.
+  </Step>
+</Steps>
 
-## Next steps
+## Step 3: Launch an AI Agent
 
-Now that you have your docs running, explore these key features:
+Your worktree is ready. Now launch your AI coding tool in the terminal.
+
+<Tabs>
+  <Tab title="Claude Code">
+    ```bash
+    claude
+    ```
+
+    Give Claude a task and let it work while you create another worktree.
+  </Tab>
+  <Tab title="Gemini CLI">
+    ```bash
+    gemini
+    ```
+
+    Start Gemini and give it a task to work on.
+  </Tab>
+  <Tab title="Other Tools">
+    Run any terminal-based AI tool:
+
+    ```bash
+    # Aider
+    aider
+
+    # OpenAI Codex
+    codex
+
+    # Or any other CLI tool
+    your-ai-tool
+    ```
+  </Tab>
+</Tabs>
+
+## Step 4: Create More Worktrees
+
+While your first AI is working, create additional worktrees for parallel work.
+
+<Steps>
+  <Step title="Create another worktree">
+    Click **Add Worktree** again and give it a different branch name (e.g., `feature/user-profile`).
+  </Step>
+  <Step title="Launch another AI agent">
+    In the new terminal, start another AI tool with a different task.
+  </Step>
+  <Step title="Repeat as needed">
+    Create as many worktrees as your machine can handle. Each runs in complete isolation.
+  </Step>
+</Steps>
+
+<Info>
+  Each worktree gets its own git worktree, so there's no risk of merge conflicts between worktrees while you work.
+</Info>
+
+## Step 5: Review and Merge
+
+When an AI finishes its task, review the changes before merging.
+
+<Steps>
+  <Step title="Open the diff viewer">
+    Click on a worktree to see what files changed. The diff viewer is located in the top right corner of the source control header.
+
+    Use the diff viewer to review the code and add comments on specific lines. Once you've annotated all the issues, click the copy button at the top to copy all comments automatically, then paste them into your AI agent CLI to generate fixes.
+  </Step>
+  <Step title="Stage and commit">
+    Use the source control panel to stage changes and create commits.
+  </Step>
+  <Step title="Create a PR">
+    Click the **Create PR** icon in the source control footer to open a pull request on GitHub.
+  </Step>
+  <Step title="Clean up">
+    Once merged, delete the worktree to remove the worktree and free up disk space.
+  </Step>
+</Steps>
+
+## What's Next?
 
 <CardGroup cols={2}>
-
-<Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
-  Learn MDX syntax and start writing your documentation.
-</Card>
-
-<Card title="Customize style" icon="palette" href="/essentials/settings">
-  Make your docs match your brand perfectly.
-</Card>
-
-<Card title="Add code examples" icon="square-code" href="/essentials/code">
-  Include syntax-highlighted code blocks.
-</Card>
-
-<Card title="API documentation" icon="code" href="/api-reference/introduction">
-  Auto-generate API docs from OpenAPI specs.
-</Card>
-
+  <Card title="Worktrees" icon="layer-group" href="/guides/create-worktree">
+    Learn more about running multiple agents
+  </Card>
+  <Card title="Configure Scripts" icon="scroll" href="/guides/configure-scripts">
+    Set up automatic setup and cleanup scripts
+  </Card>
+  <Card title="Manage Terminals" icon="terminal" href="/guides/manage-terminals">
+    Master terminal tabs and presets
+  </Card>
+  <Card title="Review Changes" icon="code-compare" href="/guides/review-changes">
+    Review and commit AI-generated code
+  </Card>
 </CardGroup>
-
-<Note>
-  **Need help?** See our [full documentation](https://mintlify.com/docs) or join our [community](https://mintlify.com/community).
-</Note>

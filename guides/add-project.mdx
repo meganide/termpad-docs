@@ -1,0 +1,99 @@
+---
+title: Add a Project
+description: Add a git repository to Termpad for parallel development
+---
+
+This guide shows you how to add a git repository to Termpad so you can start creating parallel worktrees.
+
+## Prerequisites
+
+You need one of the following:
+
+- **A local git repository** — already cloned on your machine
+- **A repository on your GitHub account** — requires [GitHub CLI](https://cli.github.com/) installed
+- **A repository URL** — HTTPS or SSH URL to clone directly
+
+## Adding Your First Project
+
+<Steps>
+  <Step title="Click Add Repository">
+    In the sidebar, click **Add Repository**.
+  </Step>
+  <Step title="Select your repository">
+    Choose a tab:
+
+    - **Local** — Browse to an existing git repository on your machine
+    - **Clone Repository** — Clone from GitHub (requires GitHub CLI) or enter an HTTPS/SSH URL
+  </Step>
+</Steps>
+
+Your project now appears in the sidebar. You'll see:
+
+- The project name (folder name by default)
+- The current branch (usually `main` or `master`)
+
+## Adding Multiple Projects
+
+Repeat the process for each repository you want to manage. Termpad supports unlimited projects.
+
+You can reorder projects by dragging them in the sidebar.
+
+## Project Requirements
+
+Termpad works with any git repository. The repository must have:
+
+| Requirement | Why |
+|-------------|-----|
+| Git initialized | Must have a `.git` folder |
+| At least one commit | Worktrees need a commit history to work |
+
+## Cloning a Repository
+
+Termpad can clone repositories directly—use the **Clone Repository** tab when adding a project. You can either select from your GitHub repositories (requires GitHub CLI) or enter an HTTPS/SSH URL.
+
+Alternatively, clone via terminal first:
+
+```bash
+git clone https://github.com/user/repo.git
+```
+
+Then add the cloned folder using the **Local** tab.
+
+## Project Settings
+
+After adding a project, configure its settings:
+
+<Steps>
+  <Step title="Select the project">
+    Click on the project in the sidebar.
+  </Step>
+  <Step title="Open settings">
+    Click the gear icon next to the project name.
+  </Step>
+  <Step title="Configure options">
+    Set up scripts for your project. See [Configure Scripts](/guides/configure-scripts) for details.
+  </Step>
+</Steps>
+
+## Deleting a Project
+
+To delete a project from Termpad:
+
+<Steps>
+  <Step title="Right-click the project">
+    Right-click the project in the sidebar.
+  </Step>
+  <Step title="Click Delete Repository">
+    Select **Delete Repository** from the menu.
+  </Step>
+  <Step title="Choose delete option">
+    You have two options:
+
+    - **Remove from app only** — Keeps all files, just removes from Termpad
+    - **Delete completely** — Deletes the repository and all worktrees
+  </Step>
+</Steps>
+
+<Warning>
+  If you choose to delete completely, make sure you've committed and pushed any work you want to keep. This action cannot be undone.
+</Warning>

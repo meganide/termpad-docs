@@ -15,38 +15,38 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Getting Started",
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "installation",
+              "quickstart"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Guides",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "guides/add-project",
+              "guides/create-worktree",
+              "guides/configure-scripts",
+              "guides/manage-terminals",
+              "guides/review-changes",
+              "guides/git-hooks",
+              "guides/notifications"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Tips",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "tips/multiple-repositories"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Support",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "faq"
             ]
           }
         ]
@@ -80,21 +80,21 @@
     ],
     "primary": {
       "type": "button",
-      "label": "Get Started",
-      "href": "https://termpad.com"
+      "label": "Download",
+      "href": "https://github.com/meganide/termpad-releases/releases"
     }
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {

@@ -1,0 +1,204 @@
+---
+title: Manage Terminals
+description: Work with terminal tabs, presets, and multiple shells
+---
+
+Each worktree in Termpad has a full terminal emulator. This guide covers how to create, manage, and customize your terminals.
+
+## Terminal Tabs
+
+Worktrees can have multiple terminal tabs:
+
+- **Main terminals**: For running AI CLIs (you can have many)
+- **User terminals**: For running other tasks like tests, dev servers, builds, etc.
+
+### Creating a new tab
+
+<Steps>
+  <Step title="Select a worktree">
+    Click on a worktree in the sidebar.
+  </Step>
+  <Step title="Click the + button">
+    In the terminal area, click the **+** button to create a new tab.
+  </Step>
+  <Step title="Choose how to open">
+    Select from:
+    - Plain shell
+    - A preset (pre-configured command, like claude, codex, etc.)
+  </Step>
+</Steps>
+
+### Managing tabs
+
+| Action | How |
+|--------|-----|
+| Switch tabs | Click the tab |
+| Reorder tabs | Drag and drop |
+| Close tab | Click the X on the tab |
+| Rename tab | Right-click > Rename |
+
+### Keyboard navigation
+
+| Shortcut | Action |
+|----------|--------|
+| `Ctrl+T` / `⌃T` | Switch to main terminal |
+| `Ctrl+U` / `⌃U` | Switch to user terminal |
+| `Ctrl+W` / `⌃W` | New tab |
+| `Ctrl+Q` / `⌃Q` | Close tab |
+| `Ctrl+1-9` / `⌘1-9` | Switch to tab 1-9 |
+
+View all keyboard shortcuts in **Settings > Keyboard Shortcuts**.
+
+## Terminal Presets
+
+Presets let you create terminals that automatically run your preset command. Commands can include flags (e.g., `claude --dangerously-skip-permissions`).
+
+### Creating a preset
+
+<Steps>
+  <Step title="Open Settings">
+    Click the gear icon to open settings.
+  </Step>
+  <Step title="Go to Terminal Presets">
+    Click the terminal tab and find the preset configuration section.
+  </Step>
+  <Step title="Click Add Preset">
+    Click the button to create a new preset.
+  </Step>
+  <Step title="Configure the preset">
+    Enter:
+    - **Name**: What to call the preset (e.g., "Claude")
+    - **Command**: What command to run (e.g., `claude`)
+    - **Icon**: Which icon to display
+  </Step>
+</Steps>
+
+### Suggested presets
+
+| Name | Command | Use For |
+|------|---------|---------|
+| Claude | `claude` | Claude Code AI agent |
+| Gemini | `gemini` | Google Gemini AI agent |
+| Codex | `codex` | Codex AI assistant |
+
+### Using presets
+
+When creating a new terminal tab:
+
+1. Click the **+** button
+2. Select a preset from the dropdown
+3. The terminal opens and runs your command automatically
+
+## Shell Configuration
+
+Termpad auto-detects available shells on your system:
+
+| Platform | Shells |
+|----------|--------|
+| Windows | PowerShell, Command Prompt, Git Bash, WSL |
+| macOS | Zsh, Bash, Fish |
+| Linux | Bash, Zsh, Fish, and others |
+
+### Changing the default shell
+
+<Steps>
+  <Step title="Open Settings">
+    Navigate to terminal settings.
+  </Step>
+  <Step title="Find Default Shell">
+    Look for the shell selection dropdown.
+  </Step>
+  <Step title="Select your shell">
+    Choose from the detected shells for your platform.
+  </Step>
+</Steps>
+
+### Adding a custom shell
+
+If your shell isn't automatically detected:
+
+<Steps>
+  <Step title="Open Settings">
+    Navigate to terminal settings.
+  </Step>
+  <Step title="Click Add Custom Shell">
+    Open the shell configuration dialog.
+  </Step>
+  <Step title="Enter shell details">
+    - **Name**: Display name (e.g., "Nushell")
+    - **Path**: Full path to the executable
+    - **Args**: Any arguments to pass
+  </Step>
+</Steps>
+
+## Terminal Themes
+
+Customize the terminal appearance:
+
+<Steps>
+  <Step title="Open Settings">
+    Navigate to terminal settings.
+  </Step>
+  <Step title="Find Theme">
+    It's in the appearance tab in the terminal theme section.
+  </Step>
+  <Step title="Choose a theme">
+    Select from available themes:
+    - Dracula
+    - One Dark
+    - Nord
+    - Solarized Dark
+    - Solarized Light
+    - And more
+  </Step>
+</Steps>
+
+## Common Terminal Tasks
+
+### Copy and paste
+
+| Action | Windows/Linux | macOS |
+|--------|--------------|-------|
+| Copy | `Ctrl+C` or select and right-click | `Cmd+C` or select text |
+| Paste | `Ctrl+V` | `Cmd+V` |
+
+Many terminals also copy on select—just selecting text copies it to clipboard.
+
+### Clear the terminal
+
+| Platform | Shortcut |
+|----------|----------|
+| Windows/Linux | `Ctrl+L` |
+| macOS | `Cmd+K` |
+
+Or type `clear` in the terminal.
+
+### Scroll through history
+
+| Action | Shortcut |
+|--------|----------|
+| Scroll up | `Shift+Page Up` or mouse wheel |
+| Scroll down | `Shift+Page Down` or mouse wheel |
+
+## WSL Support (Windows)
+
+Termpad fully supports Windows Subsystem for Linux:
+
+### Using WSL
+
+<Steps>
+  <Step title="Install WSL">
+    If not already installed, set up WSL with your preferred distribution.
+  </Step>
+  <Step title="Select WSL in Termpad">
+    Go to Settings > Terminal > Default Shell and select your WSL distribution.
+  </Step>
+  <Step title="Create terminals">
+    New terminals now open in WSL.
+  </Step>
+</Steps>
+
+### Path handling
+
+Termpad automatically handles path translation between Windows and WSL, so your projects work seamlessly.
+

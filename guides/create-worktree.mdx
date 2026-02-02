@@ -1,0 +1,201 @@
+---
+title: Worktrees
+description: Run multiple AI coding agents simultaneously in isolated workspaces
+---
+
+Worktrees are the core feature of Termpad—isolated workspaces where you run AI agents in parallel. Each worktree has its own copy of your codebase, terminal, and branch, so multiple AI agents can work simultaneously without interfering with each other.
+
+## Why Worktrees Matter
+
+Traditional AI coding workflows are sequential: give an AI a task, wait for it to finish, review, then start the next. This wastes time. With worktrees, while one AI builds a feature, you can have others tackling different tasks in parallel.
+
+| Component | Isolation |
+|-----------|-----------|
+| Git worktree | Each worktree has its own copy of the codebase |
+| Terminal | Separate terminal instance per worktree |
+| Branch | Each worktree works on its own branch |
+| Ports | Configurable port assignments to avoid conflicts |
+
+<Info>
+  Worktrees share the same git history, but file changes are isolated until you merge.
+</Info>
+
+## Prerequisites
+
+- A project [added to Termpad](/guides/add-project)
+- Understanding of what you want the worktree to accomplish
+
+## Creating a New Worktree
+
+<Steps>
+  <Step title="Select your project">
+    Click on the project in the sidebar where you want to create a worktree.
+  </Step>
+  <Step title="Click Add Worktree">
+    Click the **Add Worktree** button.
+  </Step>
+  <Step title="Enter a branch name">
+    Type a descriptive branch name. Good naming conventions:
+    - `feature/login-page`
+    - `fix/null-pointer-error`
+    - `refactor/api-client`
+    - `experiment/new-caching`
+  </Step>
+  <Step title="Choose a base branch">
+    By default, new branches are based on `origin/main`. Select a different base if needed.
+  </Step>
+  <Step title="Wait for setup">
+    Termpad creates the worktree and runs your setup script. This may take a moment depending on your script.
+  </Step>
+</Steps>
+
+## Worktree Anatomy
+
+Each worktree includes:
+
+| Component | Description |
+|-----------|-------------|
+| Git worktree | Isolated copy of your codebase on a separate branch |
+| Main terminal | Where you run your AI agent (Claude, Gemini, etc.) |
+| User terminals | Additional terminals for dev servers, tests, etc. |
+| File changes | Shows uncommitted changes in this worktree |
+| Diff viewer | Review changes before committing |
+
+## Using an Existing Worktree
+
+If you want to import worktrees that already exist:
+
+<Steps>
+  <Step title="Open Add Worktree">
+    Click the **Add Worktree** button.
+  </Step>
+  <Step title="Click the Import tab">
+    Select the **Import** tab in the dialog.
+  </Step>
+  <Step title="Select worktrees to import">
+    Termpad auto-detects all existing worktrees. Choose which ones to import/add.
+  </Step>
+</Steps>
+
+## Worktree Workflow
+
+A typical worktree workflow:
+
+<Steps>
+  <Step title="Create worktree">
+    Create a new worktree with a clear purpose.
+  </Step>
+  <Step title="Launch AI agent">
+    Start Claude Code, Gemini, or your preferred tool:
+    ```bash
+    claude
+    ```
+  </Step>
+  <Step title="Give the AI a task">
+    Describe what you want to build or fix.
+  </Step>
+  <Step title="Monitor and assist">
+    Answer questions, review progress, redirect as needed.
+  </Step>
+  <Step title="Review changes">
+    Use the diff viewer to review what the AI created.
+  </Step>
+  <Step title="Commit and push">
+    Stage, commit, and push your changes.
+  </Step>
+  <Step title="Create PR">
+    Open a pull request for code review.
+  </Step>
+  <Step title="Delete worktree">
+    Clean up the worktree when you're done.
+  </Step>
+</Steps>
+
+## Managing Multiple Worktrees
+
+Create additional worktrees to work in parallel:
+
+<Steps>
+  <Step title="Create more worktrees">
+    Repeat the worktree creation process for each task.
+  </Step>
+  <Step title="Switch between worktrees">
+    Click any worktree in the sidebar to switch to it.
+  </Step>
+  <Step title="Monitor status">
+    The sidebar shows status indicators:
+    - Active (running processes)
+    - Waiting (needs input)
+    - Idle (no activity)
+  </Step>
+</Steps>
+
+## Deleting a Worktree
+
+When a worktree's work is complete:
+
+<Steps>
+  <Step title="Commit your work">
+    Make sure all changes are committed and pushed.
+  </Step>
+  <Step title="Delete the worktree">
+    Click the options icon on the worktree, then click **Remove worktree**.
+  </Step>
+  <Step title="Cleanup">
+    Termpad runs cleanup scripts and removes the worktree.
+  </Step>
+</Steps>
+
+<Warning>
+  Deleting a worktree removes all uncommitted changes in that worktree. Always commit first!
+</Warning>
+
+## Best Practices
+
+### Choose independent tasks
+
+For best results, choose tasks that don't overlap:
+
+<Tabs>
+  <Tab title="Good">
+    - Worktree 1: Build login page
+    - Worktree 2: Build settings page
+    - Worktree 3: Add API rate limiting
+
+    These tasks touch different files and won't conflict.
+  </Tab>
+  <Tab title="Avoid">
+    - Worktree 1: Refactor user model
+    - Worktree 2: Add user preferences
+
+    These might both modify the same files, causing merge conflicts later.
+  </Tab>
+</Tabs>
+
+### One task per worktree
+
+Keep worktrees focused on a single task. This makes:
+
+- Progress easier to track
+- Changes easier to review
+
+### Use descriptive branch names
+
+Your branch name should describe the work:
+
+| Type | Example |
+|------|---------|
+| Feature | `feature/user-authentication` |
+| Bug fix | `fix/login-redirect-loop` |
+| Refactor | `refactor/extract-api-client` |
+| Experiment | `experiment/graphql-migration` |
+
+### Clean up finished worktrees
+
+Don't let old worktrees accumulate. Delete them when:
+
+- The PR is merged
+- You've decided not to pursue the work
+- The experiment is complete
+
+This frees up disk space and keeps your workspace tidy.

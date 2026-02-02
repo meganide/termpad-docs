@@ -1,0 +1,211 @@
+---
+title: Configure Scripts
+description: Set up automatic setup, run, and cleanup scripts for your projects
+---
+
+Scripts automate repetitive tasks in your workflow. Set them up once, and Termpad runs them at the right time automatically.
+
+## Script Types
+
+Termpad supports three types of scripts:
+
+| Type | When It Runs | Use For |
+|------|--------------|---------|
+| Setup | When creating a new worktree | Installing dependencies, building assets |
+| Run | When you click "Run" | Starting dev server, running tests |
+| Cleanup | When deleting a worktree | Stopping processes, cleaning artifacts |
+
+## Configuring Scripts
+
+<Steps>
+  <Step title="Open project settings">
+    Click the gear icon next to the project name.
+  </Step>
+  <Step title="Add your scripts">
+    Enter commands for each script type.
+  </Step>
+</Steps>
+
+## Setup Scripts
+
+Setup scripts run automatically when you create a new worktree. Use them for:
+
+- Installing dependencies
+- Setting up environment files
+- Building initial assets
+- Starting background services
+
+<Note>
+  Scripts run in the default shell/terminal you configured in your settings. Write your commands using the syntax for that shell.
+</Note>
+
+<Info>
+  Creating worktrees by default doesn't include any files in your `.gitignore`. If you have `.env` variables in your main branch and want them brought over to the worktree, add that to your setup script.
+</Info>
+
+### Examples
+
+<Tabs>
+  <Tab title="Node.js">
+    ```bash
+    # Copy .env file
+    cp $TERMPAD_ROOT_PATH/.env .env && npm install
+    ```
+  </Tab>
+  <Tab title="Python">
+    ```bash
+    python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
+    ```
+  </Tab>
+  <Tab title="Rust">
+    ```bash
+    cargo fetch
+    ```
+  </Tab>
+  <Tab title="Go">
+    ```bash
+    go mod download
+    ```
+  </Tab>
+</Tabs>
+
+## Run Scripts
+
+Run scripts are manually triggered commands for common tasks. You can have multiple run scripts per project.
+
+### Creating run scripts
+
+<Steps>
+  <Step title="Open script settings">
+    Navigate to the run scripts section.
+  </Step>
+  <Step title="Add a new script">
+    Click **Add Run Script**.
+  </Step>
+  <Step title="Configure the script">
+    Enter a name (e.g., "Dev Server") and the command.
+  </Step>
+</Steps>
+
+### Common run scripts
+
+| Name | Command | Purpose |
+|------|---------|---------|
+| Dev Server | `npm run dev` | Start development server |
+| Tests | `npm test` | Run test suite |
+| Build | `npm run build` | Build for production |
+| Lint | `npm run lint` | Check code style |
+| Format | `npm run format` | Format code |
+
+### Running a script
+
+<Steps>
+  <Step title="Select a worktree">
+    Click on the worktree where you want to run the script.
+  </Step>
+  <Step title="Click Run">
+    Click the **Run** button in the terminals section/panel at the bottom right.
+  </Step>
+  <Step title="Choose a script">
+    Select which script to run from the dropdown.
+  </Step>
+</Steps>
+
+### Exclusive mode
+
+Some scripts can't run in multiple worktrees (e.g., dev servers that need a specific port). Enable **exclusive mode** for these scripts.
+
+When you run an exclusive script:
+
+1. Termpad checks if it's running elsewhere
+2. If yes, it stops the other instance
+3. Then starts the script in your current worktree
+
+<Warning>
+  Exclusive mode kills the script in other worktrees. Only use it when necessary.
+</Warning>
+
+<Note>
+  Exclusive mode only detects scripts run using the Run Script feature. It won't detect if you manually run the same command in your terminal.
+</Note>
+
+## Cleanup Scripts
+
+Cleanup scripts run when you delete a worktree. When deleting a worktree, Termpad automatically removes the entire worktree directory.
+
+Cleanup scripts are useful for doing operations outside the working tree, for example removing build artifacts if applicable.
+
+### Example
+
+```bash
+# Remove build artifacts outside the worktree
+rm -rf $TERMPAD_ROOT_PATH/.build-cache || true
+```
+
+## Environment Variables
+
+Scripts have access to Termpad-provided environment variables:
+
+| Variable | Description |
+|----------|-------------|
+| `TERMPAD_WORKSPACE_NAME` | Workspace name |
+| `TERMPAD_WORKSPACE_PATH` | Workspace path |
+| `TERMPAD_ROOT_PATH` | Repository root directory path |
+| `TERMPAD_PORT` | Unique port for this worktree (100 ports available per repository) |
+
+### Using environment variables
+
+```bash
+# In a run script
+npm run dev --port $TERMPAD_PORT
+```
+
+## Smart Port Management
+
+Avoid port conflicts when running dev servers across worktrees:
+
+<Steps>
+  <Step title="Configure your scripts">
+    Use `$TERMPAD_PORT` in your run scripts:
+
+    ```bash
+    npm run dev --port $TERMPAD_PORT
+    ```
+  </Step>
+  <Step title="Each worktree gets a unique port">
+    Each worktree receives a unique port from a pool of 100 ports available per repository.
+  </Step>
+</Steps>
+
+## Script Tips
+
+### Chain commands
+
+Run multiple commands in sequence:
+
+```bash
+npm install && npm run build && npm test
+```
+
+### Handle failures gracefully
+
+Use `|| true` to prevent script failure from blocking:
+
+```bash
+# Don't fail if there's nothing to clean
+rm -rf dist || true
+```
+
+### Keep scripts simple
+
+If your script is complex, put it in a file:
+
+```bash
+./scripts/setup.sh
+```
+
+Then reference that file in Termpad.
+
+### Test scripts manually first
+
+Before adding a script to Termpad, test it in a terminal to make sure it works.

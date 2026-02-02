@@ -1,0 +1,155 @@
+---
+title: FAQ
+description: Frequently asked questions about Termpad
+---
+
+## General
+
+<AccordionGroup>
+  <Accordion title="What is Termpad?">
+    Termpad is a desktop application that lets you run multiple AI coding agents (like Claude Code, Gemini CLI, and others) in parallel. Each agent works in its own isolated git worktree, so they don't conflict with each other.
+  </Accordion>
+
+  <Accordion title="Is Termpad free?">
+    Yes. Termpad is free to download and use during the public beta. There are no hidden premium tiers or subscriptions.
+  </Accordion>
+
+  <Accordion title="Do I need an account to use Termpad?">
+    No. Termpad runs entirely on your local machine. No signup, no login, no cloud sync.
+  </Accordion>
+
+  <Accordion title="Does Termpad collect my data?">
+    No. Termpad doesn't track anything or send data anywhere. Everything stays on your machine.
+  </Accordion>
+
+  <Accordion title="Which platforms does Termpad support?">
+    - Windows 10 and later
+    - macOS 12 (Monterey) and later
+    - Linux via AppImage or .deb package
+  </Accordion>
+
+  <Accordion title="Why do I see security warnings?">
+    Termpad is built by an independent developer and isn't code-signed with an expensive certificate. Your OS shows warnings for unsigned apps. The app is safe—you can verify by checking the download checksums.
+  </Accordion>
+</AccordionGroup>
+
+## AI Tools
+
+<AccordionGroup>
+  <Accordion title="Which AI tools work with Termpad?">
+    Any terminal-based AI coding tool works with Termpad:
+    - Claude Code
+    - Gemini CLI
+    - Aider
+    - OpenAI Codex
+    - And any other CLI tool
+
+    Termpad doesn't limit which tools you use.
+  </Accordion>
+
+  <Accordion title="Does Termpad include AI capabilities?">
+    No. Termpad is a workspace manager, not an AI. You bring your own AI tools (Claude Code, Gemini, etc.) and run them inside Termpad's terminals.
+  </Accordion>
+
+  <Accordion title="How many AI agents can I run at once?">
+    As many as your system can handle. Each agent uses CPU and RAM, so the practical limit depends on your hardware.
+  </Accordion>
+
+  <Accordion title="Do the AI tools need their own licenses?">
+    Yes. Termpad just provides the workspace—each AI tool has its own pricing, authentication, and terms. Check with each tool's provider.
+  </Accordion>
+</AccordionGroup>
+
+## Git and Worktrees
+
+<AccordionGroup>
+  <Accordion title="What is a git worktree?">
+    A worktree is a linked working directory for a git repository. Each worktree can be on a different branch, with its own set of files. They share the same git history but have isolated working directories.
+  </Accordion>
+
+  <Accordion title="Where are worktrees stored?">
+    By default, in a `.worktrees` folder inside your repository. You can change this location in settings.
+  </Accordion>
+
+  <Accordion title="Do worktrees use a lot of disk space?">
+    Not much. Git worktrees share object storage, so you're not duplicating the entire repository. Only modified files and build artifacts take additional space.
+  </Accordion>
+
+  <Accordion title="Can I use my own git commands?">
+    Yes. Worktrees are standard git worktrees. You can use any git command in the terminal.
+  </Accordion>
+
+  <Accordion title="What happens to worktrees when I close Termpad?">
+    They stay on disk. When you reopen Termpad, your worktrees and worktrees are still there. Termpad saves worktree state automatically.
+  </Accordion>
+</AccordionGroup>
+
+## Terminals
+
+<AccordionGroup>
+  <Accordion title="Which shells are supported?">
+    - Bash
+    - Zsh
+    - Fish
+    - PowerShell
+    - Command Prompt
+    - WSL distributions
+    - Any custom shell you configure
+  </Accordion>
+
+  <Accordion title="How do I copy/paste in the terminal?">
+    - **Windows/Linux**: `Ctrl+C` to copy (or select and right-click), `Ctrl+V` to paste
+    - **macOS**: `Cmd+C` to copy, `Cmd+V` to paste
+
+    Selecting text may also copy automatically depending on your settings.
+  </Accordion>
+
+</AccordionGroup>
+
+## Scripts and Automation
+
+<AccordionGroup>
+  <Accordion title="What are setup scripts?">
+    Commands that run automatically when you create a new worktree. Use them for installing dependencies, building assets, or any other setup tasks.
+  </Accordion>
+
+  <Accordion title="What is exclusive mode for scripts?">
+    When enabled, running an exclusive script in one worktree stops it in all other worktrees. Use this for commands that can't run in parallel, like dev servers that need a specific port.
+  </Accordion>
+
+  <Accordion title="Can I use environment variables in scripts?">
+    Yes. Termpad provides variables like `$TERMPAD_WORKSPACE_NAME`, `$TERMPAD_WORKSPACE_PATH`, `$TERMPAD_ROOT_PATH`, and `$TERMPAD_PORT` that you can use in your scripts. See the [Environment Variables](/guides/configure-scripts#environment-variables) section for details.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Termpad is running slowly">
+    - Close unused worktrees
+    - Check system resources (each AI agent like Claude Code uses 500-800 MB RAM)
+    - Reduce the number of parallel AI agents
+    - Restart the app to clear memory
+  </Accordion>
+
+  <Accordion title="Git operations are slow">
+    - Large repositories take longer
+    - Add build artifacts to `.gitignore`
+    - The issue might be network-related if accessing remote
+  </Accordion>
+
+  <Accordion title="Notifications aren't working">
+    - Check Termpad settings
+    - Check OS notification permissions
+    - Disable "Background only" if you want notifications while focused
+  </Accordion>
+
+  <Accordion title="Where can I report bugs?">
+    Open an issue on [GitHub](https://github.com/meganide/termpad-releases/issues) or reach out on [Twitter/X](https://x.com/Renas_Dev). Include:
+    - Your OS and version
+    - Steps to reproduce
+    - Error messages
+    - Screenshots if helpful
+  </Accordion>
+</AccordionGroup>
+

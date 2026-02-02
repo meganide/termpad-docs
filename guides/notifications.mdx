@@ -1,0 +1,81 @@
+---
+title: Notifications
+description: Get alerted when your terminals need attention
+---
+
+When working with multiple terminal worktrees, you need to know when a process changes state. Termpad's notification system keeps you informed without constant context switching.
+
+## How Notifications Work
+
+Termpad monitors your terminal worktrees and sends desktop notifications when terminal status changes to:
+
+- Idle (after a process finishes)
+- Waiting (when input is required)
+- Error (when a process encounters an error)
+
+## Sidebar Status Indicators
+
+In addition to desktop notifications, Termpad displays status indicators in the sidebar for all worktrees. This gives you a quick visual overview of each worktree's terminal status:
+
+- **Starting** - Process is launching (cyan, pulsing)
+- **Running** - Process is actively executing (emerald, pulsing)
+- **Waiting** - Process is waiting for input (yellow)
+- **Idle** - Process has finished (slate)
+- **Stopped** - Process has been stopped (orange)
+- **Error** - Process encountered an error (red)
+
+The sidebar provides an at-a-glance view without requiring you to switch between worktrees or wait for notifications.
+
+## Notification Types
+
+### Idle notifications
+
+Sent when a terminal process finishes and the status changes to idle. The notification shows:
+
+- Repository and branch name
+- Message: "has finished"
+- Click to switch to that worktree
+
+### Waiting notifications
+
+Sent when a terminal is waiting for input. The notification shows:
+
+- Repository and branch name
+- Message: "is waiting for your input"
+- Click to switch to that worktree
+
+### Error notifications
+
+Sent immediately when a terminal encounters an error. The notification shows:
+
+- Repository and branch name
+- Message: "encountered an error"
+- Click to switch to that worktree
+
+## Configuring Notifications
+
+<Steps>
+  <Step title="Open Settings">
+    Click the gear icon to open settings.
+  </Step>
+  <Step title="Go to Notifications">
+    Go to the notifications tab.
+  </Step>
+  <Step title="Adjust your preferences">
+    Enable or disable notification types.
+  </Step>
+</Steps>
+
+### Available options
+
+| Option | Description |
+|--------|-------------|
+| Enable notifications | Master toggle for all notifications |
+| Background only | Only notify when Termpad isn't focused |
+
+## Background Only Mode
+
+By default, notifications only appear when Termpad is in the background. This prevents interruption when you're actively working in the app.
+
+To always receive notifications, disable **Background only** in settings.
+
