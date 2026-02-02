@@ -1,0 +1,177 @@
+---
+title: Feature Development
+description: Build multiple features simultaneously with parallel AI agents
+---
+
+# Feature Development
+
+The most common use case for Termpad is building multiple features in parallel. Instead of waiting for one feature to complete before starting the next, you can have several AI agents working simultaneously.
+
+## The Traditional Workflow
+
+Without Termpad, feature development is sequential:
+
+1. Start feature A with an AI agent
+2. Wait for completion
+3. Review and merge
+4. Start feature B
+5. Wait, review, merge
+6. Repeat
+
+If each feature takes an hour, three features take three hours of wall-clock time.
+
+## The Parallel Workflow
+
+With Termpad, you work in parallel:
+
+1. Start feature A, B, and C simultaneously
+2. Monitor progress across all three
+3. Review and merge as each completes
+
+The same three features finish much faster because the AIs work concurrently.
+
+## Example: Building a Dashboard
+
+Let's say you need to build a dashboard with:
+
+- User authentication
+- Data visualization
+- Settings page
+
+### Setting up the worktrees
+
+<Steps>
+  <Step title="Create the auth worktree">
+    Create a new worktree with branch `feature/auth`. Give the AI a prompt like:
+
+    ```
+    Build a login page with email/password authentication.
+    Include registration, password reset, and worktree management.
+    Use JWT tokens stored in httpOnly cookies.
+    ```
+  </Step>
+  <Step title="Create the visualization worktree">
+    Create a new worktree with branch `feature/data-viz`. Prompt:
+
+    ```
+    Create a dashboard with charts showing user activity.
+    Use Chart.js for visualizations.
+    Include line charts, bar charts, and pie charts.
+    Add date range filtering.
+    ```
+  </Step>
+  <Step title="Create the settings worktree">
+    Create a new worktree with branch `feature/settings`. Prompt:
+
+    ```
+    Build a user settings page with profile editing,
+    notification preferences, and account deletion.
+    Include form validation and success/error feedback.
+    ```
+  </Step>
+</Steps>
+
+### Monitoring progress
+
+While the AIs work:
+
+- Check the sidebar for status indicators
+- Click into worktrees to see terminal output
+- Respond to AI questions as they arise
+- Use notifications to know when attention is needed
+
+### Reviewing and merging
+
+As each feature completes:
+
+<Steps>
+  <Step title="Review the changes">
+    Use the diff viewer to inspect the code.
+  </Step>
+  <Step title="Test the feature">
+    Run the dev server and verify it works.
+  </Step>
+  <Step title="Create a PR">
+    Push and create a pull request.
+  </Step>
+  <Step title="Merge when ready">
+    After CI passes and code review, merge to main.
+  </Step>
+</Steps>
+
+## Tips for Parallel Feature Development
+
+### Choose independent features
+
+Pick features that touch different parts of the codebase:
+
+| Feature | Files Affected |
+|---------|----------------|
+| Auth | `auth/`, `middleware/` |
+| Data viz | `components/charts/`, `api/stats/` |
+| Settings | `components/settings/`, `api/user/` |
+
+This minimizes merge conflicts when you combine the work.
+
+### Share context between worktrees
+
+If features need to interact, give each AI the same context:
+
+```
+Note: This feature will integrate with the authentication system
+being built separately. Assume authenticated users have a `user`
+object with `id`, `email`, and `role` properties.
+```
+
+### Stagger your starts
+
+Don't create all worktrees at once. Start one, give it a task, then start the next. This way:
+
+- You can incorporate learnings from earlier worktrees
+- You're not overwhelmed with questions all at once
+- Resource usage stays manageable
+
+### Keep a main worktree for coordination
+
+Dedicate one worktree (or your main branch) for:
+
+- Testing integration between features
+- Resolving conflicts
+- Making shared changes
+
+<Info>
+  The main branch worktree is always available, even while AI worktrees run on feature branches.
+</Info>
+
+## Handling Conflicts
+
+Sometimes features touch the same files. When this happens:
+
+<Steps>
+  <Step title="Merge the first feature">
+    Complete and merge the most finished feature first.
+  </Step>
+  <Step title="Rebase the second feature">
+    In the remaining worktree, pull main and rebase:
+
+    ```bash
+    git fetch origin
+    git rebase origin/main
+    ```
+  </Step>
+  <Step title="Resolve conflicts">
+    Fix any conflicts that arise. You can ask the AI to help.
+  </Step>
+  <Step title="Continue">
+    Let the AI continue its work with the updated codebase.
+  </Step>
+</Steps>
+
+## Real-World Results
+
+Developers using Termpad for parallel feature development report:
+
+- **Faster delivery** — Multiple features ship in the time one would take
+- **Better focus** — Each worktree has a single, clear goal
+- **Reduced context switching** — The dashboard shows everything at a glance
+- **Cleaner PRs** — Each PR contains one focused feature

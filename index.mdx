@@ -1,97 +1,65 @@
 ---
-title: "Introduction"
-description: "Welcome to the new home for your documentation"
+title: Introduction
+description: Run multiple AI coding agents in parallel with isolated git worktrees
 ---
 
-## Setting up
+# Welcome to Termpad
 
-Get your documentation site up and running in minutes.
+Termpad is a desktop application that lets you run multiple AI coding agents simultaneously, each in its own isolated git worktree. No more waiting for one AI to finish before starting another.
 
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Follow our three step quickstart guide.
-</Card>
+<Info>
+  Termpad is currently in **public beta** and free to download. No account required.
+</Info>
 
-## Make it yours
+## Why Termpad?
 
-Design a docs site that looks great and empowers your users.
+AI coding assistants like Claude Code, Gemini CLI, and OpenAI Codex are powerful, but they have a fundamental limitation: they work one task at a time. While an AI builds your login feature, you're stuck waiting instead of tackling the next task.
 
-<Columns cols={2}>
-  <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
-  >
-    Edit your docs locally and preview them in real time.
+Termpad solves this by letting you:
+
+- **Run multiple AI agents in parallel** — Each in its own terminal worktree
+- **Isolate work with git worktrees** — No merge conflicts between worktrees
+- **Track everything from one dashboard** — See which agents are running, waiting, or done
+- **Review and merge changes easily** — Built-in diff viewer and git integration
+
+## How It Works
+
+<Steps>
+  <Step title="Add your project">
+    Point Termpad to any git repository on your machine.
+  </Step>
+  <Step title="Create worktrees">
+    Spin up multiple worktrees, each with its own git worktree and terminal.
+  </Step>
+  <Step title="Run AI agents">
+    Launch Claude Code, Gemini, or any CLI tool in each terminal.
+  </Step>
+  <Step title="Merge and ship">
+    Review changes, merge branches, and clean up worktrees when done.
+  </Step>
+</Steps>
+
+## Quick Links
+
+<CardGroup cols={2}>
+  <Card title="Installation" icon="download" href="/installation">
+    Download and install Termpad on your system
   </Card>
-  <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
-  >
-    Customize the design and colors of your site to match your brand.
+  <Card title="Quickstart" icon="rocket" href="/quickstart">
+    Get up and running in 5 minutes
   </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
+  <Card title="Features" icon="sparkles" href="/features/parallel-worktrees">
+    Explore what Termpad can do
   </Card>
-  <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
-  >
-    Auto-generate API documentation from OpenAPI specifications.
+  <Card title="Use Cases" icon="lightbulb" href="/use-cases/feature-development">
+    See practical examples
   </Card>
-</Columns>
+</CardGroup>
 
-## Create beautiful pages
+## Supported Platforms
 
-Everything you need to create world-class documentation.
+Termpad runs on:
 
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
-  </Card>
-  <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
-  >
-    Add sample code to demonstrate how to use your product.
-  </Card>
-  <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
-  >
-    Display images and other media.
-  </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
-
-## Need inspiration?
-
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
-</Card>
+- **Windows** 10 and later
+- **macOS** 12 (Monterey) and later
+- **Linux** via AppImage or .deb package

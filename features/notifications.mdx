@@ -1,0 +1,135 @@
+---
+title: Notifications
+description: Get alerted when your AI agents need attention
+---
+
+# Notifications
+
+When running multiple AI agents in parallel, you need to know when one finishes or needs input. Termpad's notification system keeps you informed without constant context switching.
+
+## How Notifications Work
+
+Termpad monitors your terminal worktrees and sends desktop notifications when:
+
+- An AI agent completes its task
+- An AI agent is waiting for your input
+- A long-running command finishes
+- An error occurs
+
+## Notification Types
+
+### Completion notifications
+
+Sent when an AI agent finishes working. The notification includes:
+
+- Worktree name
+- Brief summary of what happened
+- Quick action to switch to that worktree
+
+### Input required notifications
+
+Sent when an AI is waiting for you to respond. Common triggers:
+
+- AI asking a question
+- AI requesting confirmation
+- AI hitting an error and stopping
+
+### Error notifications
+
+Sent when something goes wrong:
+
+- Command fails with an error
+- Process crashes
+- Git operation fails
+
+## Configuring Notifications
+
+<Steps>
+  <Step title="Open Settings">
+    Click the gear icon to open settings.
+  </Step>
+  <Step title="Go to Notifications">
+    Find the notifications configuration section.
+  </Step>
+  <Step title="Adjust your preferences">
+    Enable or disable notification types.
+  </Step>
+</Steps>
+
+### Available options
+
+| Option | Description |
+|--------|-------------|
+| Enable notifications | Master toggle for all notifications |
+| Background only | Only notify when Termpad isn't focused |
+| Cooldown | Minimum time between notifications (prevents spam) |
+
+## Background Only Mode
+
+By default, notifications only appear when Termpad is in the background. This prevents interruption when you're actively working in the app.
+
+To always receive notifications, disable **Background only** in settings.
+
+## Cooldown Period
+
+The cooldown prevents notification spam when multiple events happen quickly. Default is 8 seconds.
+
+Adjust this in **Settings > Notifications > Cooldown**.
+
+## Platform-Specific Behavior
+
+<Tabs>
+  <Tab title="Windows">
+    Notifications appear in the Windows Action Center. Click a notification to switch to Termpad.
+
+    Make sure Termpad has notification permissions in Windows Settings > Notifications.
+  </Tab>
+  <Tab title="macOS">
+    Notifications appear in Notification Center. Click to switch to the relevant worktree.
+
+    Grant notification permissions when prompted, or enable in System Preferences > Notifications.
+  </Tab>
+  <Tab title="Linux">
+    Notifications use your desktop environment's notification system (libnotify).
+
+    Behavior varies by DE:
+    - GNOME: Notifications appear in the message tray
+    - KDE: Notifications appear in the notification area
+    - Others: Depends on your notification daemon
+  </Tab>
+</Tabs>
+
+## Focus Mode
+
+If you need uninterrupted focus time, you can temporarily disable all notifications:
+
+<Steps>
+  <Step title="Open the quick settings">
+    Click the notification icon in the toolbar.
+  </Step>
+  <Step title="Toggle focus mode">
+    Click **Focus Mode** to mute notifications.
+  </Step>
+  <Step title="Resume notifications">
+    Click again to re-enable notifications.
+  </Step>
+</Steps>
+
+<Tip>
+  Use your operating system's Do Not Disturb mode for system-wide notification control.
+</Tip>
+
+## Troubleshooting
+
+### Notifications not appearing
+
+1. Check that notifications are enabled in Termpad settings
+2. Check your OS notification permissions for Termpad
+3. Check that "Background only" isn't preventing notifications
+4. Try disabling and re-enabling notifications
+
+### Too many notifications
+
+1. Increase the cooldown period
+2. Enable "Background only" mode
+3. Disable notification types you don't need

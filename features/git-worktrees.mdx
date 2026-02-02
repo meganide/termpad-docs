@@ -1,0 +1,130 @@
+---
+title: Git Worktrees
+description: Understand how Termpad uses git worktrees to isolate your work
+---
+
+# Git Worktrees
+
+Termpad uses git worktrees to give each worktree its own isolated copy of your codebase. This is the magic that lets multiple AI agents work in parallel without stepping on each other.
+
+## What Are Git Worktrees?
+
+A git worktree is a linked working directory for your repository. Each worktree:
+
+- Has its own files on disk
+- Can be on a different branch
+- Shares the same git history and remote
+
+Think of it like having multiple checkouts of the same repository, but more efficient because git only stores the differences.
+
+## How Termpad Manages Worktrees
+
+When you create a worktree, Termpad automatically:
+
+1. Creates a new git branch (or uses an existing one)
+2. Creates a new worktree for that branch
+3. Runs your setup scripts in the new worktree
+4. Opens a terminal pointed at the worktree
+
+When you delete a worktree, Termpad:
+
+1. Runs your cleanup scripts
+2. Removes the worktree from disk
+3. Optionally deletes the branch
+
+<Info>
+  You never need to run git worktree commands yourself. Termpad handles everything.
+</Info>
+
+## Worktree Location
+
+By default, Termpad creates worktrees in a `.worktrees` folder inside your repository:
+
+```
+my-project/
+├── .git/
+├── .worktrees/
+│   ├── feature-login/
+│   ├── feature-settings/
+│   └── fix-bug-123/
+├── src/
+└── package.json
+```
+
+You can change this location in Settings if you prefer worktrees elsewhere.
+
+## Benefits of Worktrees
+
+### No merge conflicts while working
+
+Each AI agent works in its own worktree. Changes don't mix until you explicitly merge, so there's no risk of one AI overwriting another's work.
+
+### Full file system isolation
+
+Each worktree is a real directory with real files. This means:
+
+- Dev servers run independently
+- Build artifacts are separate
+- No file locking issues
+
+### Efficient disk usage
+
+Git worktrees share object storage, so you're not duplicating your entire repository for each worktree. Only modified files take extra space.
+
+## Working with Branches
+
+### Creating from a branch
+
+When creating a worktree, you can base it on any existing branch:
+
+<Steps>
+  <Step title="Click Add Worktree">
+    Open the new worktree dialog.
+  </Step>
+  <Step title="Choose a base branch">
+    Select which branch to branch from (usually `main` or `develop`).
+  </Step>
+  <Step title="Name the new branch">
+    Enter a name for your new branch.
+  </Step>
+</Steps>
+
+### Using an existing branch
+
+If a branch already exists, Termpad will use it:
+
+<Steps>
+  <Step title="Click Add Worktree">
+    Open the new worktree dialog.
+  </Step>
+  <Step title="Enter the branch name">
+    Type the name of an existing branch.
+  </Step>
+  <Step title="Confirm">
+    Termpad detects the branch exists and creates a worktree for it.
+  </Step>
+</Steps>
+
+## Troubleshooting
+
+### Worktree already exists
+
+If you see this error, the branch might already have a worktree:
+
+```
+fatal: 'feature-x' is already checked out
+```
+
+**Solution**: Delete the existing worktree first, or use a different branch name.
+
+### Disk space issues
+
+Worktrees are lightweight, but they still use disk space for modified files and build artifacts.
+
+**Solution**: Regularly delete worktrees you're done with. Termpad removes the worktree files automatically.
+
+### Worktree path too long (Windows)
+
+Windows has a 260-character path limit that can cause issues with deep folder structures.
+
+**Solution**: Move your repository closer to the drive root, or enable long paths in Windows settings.

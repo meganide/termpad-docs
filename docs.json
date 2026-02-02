@@ -15,38 +15,51 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Getting Started",
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "installation",
+              "quickstart"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Features",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "features/parallel-worktrees",
+              "features/git-worktrees",
+              "features/terminal-management",
+              "features/scripts",
+              "features/code-review",
+              "features/notifications"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Use Cases",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "use-cases/feature-development",
+              "use-cases/bug-fixing",
+              "use-cases/code-review-workflow",
+              "use-cases/experimentation"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "How-to Guides",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "guides/add-project",
+              "guides/create-worktree",
+              "guides/configure-scripts",
+              "guides/manage-terminals",
+              "guides/review-changes"
+            ]
+          },
+          {
+            "group": "Support",
+            "pages": [
+              "troubleshooting",
+              "faq"
             ]
           }
         ]
@@ -80,21 +93,21 @@
     ],
     "primary": {
       "type": "button",
-      "label": "Get Started",
-      "href": "https://termpad.com"
+      "label": "Download",
+      "href": "https://github.com/meganide/termpad-releases/releases"
     }
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {

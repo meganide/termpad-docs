@@ -1,0 +1,211 @@
+---
+title: Experimentation
+description: Test different approaches to the same problem in parallel
+---
+
+# Experimentation
+
+Sometimes you're not sure which approach is best. With Termpad, you can have multiple AI agents try different solutions simultaneously, then compare results and pick the winner.
+
+## Why Experiment in Parallel?
+
+Different approaches to the same problem can vary dramatically in:
+
+- **Performance** — One might be 10x faster
+- **Code complexity** — One might be much simpler
+- **Maintainability** — One might be easier to extend
+- **Trade-offs** — Each might excel in different scenarios
+
+Testing approaches sequentially takes forever. Testing in parallel gives you answers fast.
+
+## Example: Optimizing a Search Feature
+
+Your search is slow. There are several potential solutions:
+
+| Approach | Worktree | Description |
+|----------|---------|-------------|
+| Elasticsearch | Worktree 1 | Add dedicated search infrastructure |
+| PostgreSQL FTS | Worktree 2 | Use built-in full-text search |
+| In-memory index | Worktree 3 | Cache and search in application |
+
+### Setting up the experiment
+
+<Steps>
+  <Step title="Define the problem">
+    Document what you're optimizing and how you'll measure success:
+
+    ```
+    Problem: Search takes 3+ seconds for common queries
+    Goal: Sub-200ms response time
+    Metrics: Average response time, P95 response time
+    Test data: 1M records
+    ```
+  </Step>
+  <Step title="Create worktrees for each approach">
+    Create branches like `experiment/elasticsearch`, `experiment/pg-fts`, `experiment/memory-index`.
+  </Step>
+  <Step title="Give each AI the same goal">
+    ```
+    Implement search using [approach]. The search must:
+    - Support full-text search across title and description
+    - Handle 1M+ records
+    - Return results in under 200ms
+    - Support pagination
+
+    Include benchmarks showing performance.
+    ```
+  </Step>
+  <Step title="Let them build">
+    Each AI implements its approach independently.
+  </Step>
+</Steps>
+
+### Comparing results
+
+Once all worktrees complete:
+
+<Steps>
+  <Step title="Run benchmarks">
+    Test each implementation with the same dataset and queries.
+  </Step>
+  <Step title="Compare metrics">
+    | Approach | Avg Response | P95 Response | Setup Complexity |
+    |----------|-------------|--------------|------------------|
+    | Elasticsearch | 45ms | 120ms | High |
+    | PostgreSQL FTS | 180ms | 450ms | Low |
+    | In-memory | 15ms | 35ms | Medium |
+  </Step>
+  <Step title="Evaluate trade-offs">
+    Consider factors beyond raw performance:
+    - Infrastructure cost
+    - Maintenance burden
+    - Scalability limits
+    - Team familiarity
+  </Step>
+  <Step title="Choose and merge">
+    Pick the best approach for your needs and merge that branch.
+  </Step>
+</Steps>
+
+## Experimentation Scenarios
+
+### UI/UX experiments
+
+Test different user interfaces:
+
+```
+Worktree 1: Implement a modal-based checkout flow
+Worktree 2: Implement a single-page checkout flow
+Worktree 3: Implement a multi-step wizard checkout
+```
+
+Compare usability, code complexity, and user flow.
+
+### Architecture experiments
+
+Compare architectural patterns:
+
+```
+Worktree 1: Implement the feature using Redux
+Worktree 2: Implement using React Context
+Worktree 3: Implement using Zustand
+```
+
+Evaluate boilerplate, performance, and developer experience.
+
+### Algorithm experiments
+
+Test different algorithms:
+
+```
+Worktree 1: Implement sorting with quicksort
+Worktree 2: Implement with mergesort
+Worktree 3: Implement with built-in sort + custom comparator
+```
+
+Benchmark with realistic data sizes.
+
+### Library experiments
+
+Compare third-party libraries:
+
+```
+Worktree 1: Build the form with React Hook Form
+Worktree 2: Build with Formik
+Worktree 3: Build with native React state
+```
+
+Compare bundle size, DX, and feature coverage.
+
+## Tips for Effective Experimentation
+
+### Define success criteria upfront
+
+Before starting, write down:
+
+- What metrics matter
+- What "good enough" looks like
+- What trade-offs are acceptable
+
+This prevents endless optimization cycles.
+
+### Keep experiments focused
+
+Each experiment should test one variable:
+
+<Tabs>
+  <Tab title="Good">
+    Test three state management libraries with the same feature.
+  </Tab>
+  <Tab title="Avoid">
+    Test three libraries while also testing three UI patterns.
+
+    Too many variables make comparison impossible.
+  </Tab>
+</Tabs>
+
+### Use the same test cases
+
+Create a standard test suite before starting:
+
+```
+Test cases for search experiments:
+1. Single word query: "javascript"
+2. Multi-word query: "react state management"
+3. Phrase query: "how to center a div"
+4. Empty results query: "xyznonexistent"
+5. Large result set: "the"
+```
+
+Run the same tests on all implementations.
+
+### Document as you go
+
+Have each AI document:
+
+- Architecture decisions
+- Trade-offs made
+- Limitations discovered
+- Setup requirements
+
+This makes comparison easier and preserves learnings.
+
+### Don't over-invest before comparing
+
+Keep initial implementations minimal:
+
+1. Build the core functionality
+2. Run quick benchmarks
+3. Eliminate clearly inferior options
+4. Only then polish the winner
+
+Don't waste time perfecting an approach you'll discard.
+
+## After the Experiment
+
+When you've chosen a winner:
+
+1. **Delete losing branches** — Clean up experiment branches
+2. **Document the decision** — Record why you chose this approach
+3. **Note alternatives** — Future you might need to revisit
+4. **Share learnings** — Your team benefits from what you discovered

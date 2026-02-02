@@ -1,0 +1,214 @@
+---
+title: Troubleshooting
+description: Solutions to common problems with Termpad
+---
+
+# Troubleshooting
+
+This page covers common issues and their solutions. If you don't find your problem here, check the [FAQ](/faq) or report an issue on [GitHub](https://github.com/meganide/termpad-releases/issues).
+
+## Installation Issues
+
+### Security warnings on first launch
+
+**Problem**: Windows or macOS shows a security warning when launching Termpad.
+
+**Solution**: This is expected for apps from independent developers without expensive code-signing certificates.
+
+<Tabs>
+  <Tab title="Windows">
+    1. Click **More info** on the warning dialog
+    2. Click **Run anyway**
+  </Tab>
+  <Tab title="macOS">
+    1. Go to **System Preferences > Security & Privacy**
+    2. Click **Open Anyway** next to the Termpad message
+  </Tab>
+</Tabs>
+
+### App doesn't start
+
+**Problem**: Termpad doesn't open when you click it.
+
+**Solutions**:
+1. Try running as administrator (Windows) or from Terminal (macOS/Linux)
+2. Check if another instance is already running
+3. Delete the settings folder and try again:
+   - Windows: `%APPDATA%/termpad`
+   - macOS: `~/Library/Application Support/termpad`
+   - Linux: `~/.config/termpad`
+
+## Git and Worktree Issues
+
+### "Branch is already checked out" error
+
+**Problem**: Can't create a worktree because the branch is already checked out somewhere.
+
+**Solution**:
+1. Find and delete the existing worktree for that branch
+2. Or use a different branch name
+3. Check `git worktree list` to see all worktrees
+
+### Worktree creation fails
+
+**Problem**: Error when creating a new worktree.
+
+**Solutions**:
+1. Make sure your repository has at least one commit
+2. Check that you have write permissions to the repository folder
+3. Verify the branch name is valid (no special characters)
+4. Try manually creating a worktree to see the full error:
+   ```bash
+   git worktree add ../test-worktree feature/test
+   ```
+
+### Changes not showing
+
+**Problem**: Made changes but they don't appear in the file changes panel.
+
+**Solutions**:
+1. Click the refresh button to force a status update
+2. Check you're in the correct worktree
+3. Verify the files are inside the worktree directory
+4. Wait a few seconds for the automatic refresh
+
+### Merge conflicts
+
+**Problem**: Conflicts when merging branches that were worked on in parallel.
+
+**Solution**:
+1. This can happen when worktrees touch the same files
+2. Resolve conflicts manually or ask your AI agent to help:
+   ```
+   Help me resolve the merge conflicts in these files.
+   Show me the conflicts and recommend which changes to keep.
+   ```
+
+## Terminal Issues
+
+### Terminal not responding
+
+**Problem**: Terminal appears frozen or unresponsive.
+
+**Solutions**:
+1. Try pressing `Ctrl+C` to interrupt running processes
+2. Close and reopen the terminal tab
+3. Check if a process is consuming 100% CPU
+4. Restart the worktree if nothing works
+
+### Shell not detected
+
+**Problem**: Your preferred shell doesn't appear in the options.
+
+**Solution**: Add it as a custom shell in Settings:
+1. Go to **Settings > Terminal**
+2. Click **Add Custom Shell**
+3. Enter the name and full path to the shell executable
+
+### Commands not found
+
+**Problem**: Commands like `npm`, `node`, or `python` aren't found.
+
+**Solutions**:
+1. The shell might not be loading your profile
+2. Try adding the command to your PATH in the shell config
+3. Use the full path to the executable
+4. Check that the tool is installed in the worktree environment
+
+### WSL not working (Windows)
+
+**Problem**: Can't use WSL distributions in Termpad.
+
+**Solutions**:
+1. Make sure WSL is properly installed: `wsl --list`
+2. Update WSL to the latest version: `wsl --update`
+3. Try selecting a specific distribution in settings
+4. Check that the distribution has a valid shell
+
+## Performance Issues
+
+### Termpad is slow
+
+**Problem**: The app feels sluggish or unresponsive.
+
+**Solutions**:
+1. Close unused worktrees—each uses memory
+2. Check system resources (CPU, RAM usage)
+3. Reduce the number of parallel worktrees
+4. Clear old worktrees to free disk space
+5. Restart the app to clear any memory leaks
+
+### High memory usage
+
+**Problem**: Termpad uses a lot of RAM.
+
+**Solutions**:
+1. Each worktree with a running AI uses significant memory
+2. Close worktrees you're not actively using
+3. Limit the number of open terminal tabs
+4. Consider upgrading your system RAM if this is a frequent issue
+
+### Slow git operations
+
+**Problem**: Git status, diff, and other operations are slow.
+
+**Solutions**:
+1. Large repositories take longer to scan
+2. Add large folders to `.gitignore` (node_modules, build artifacts)
+3. Consider using shallow clones for very large repositories
+4. The issue may be with the network if accessing remote
+
+## Notification Issues
+
+### Notifications not appearing
+
+**Problem**: Expected notifications don't show up.
+
+**Solutions**:
+1. Check Termpad settings to ensure notifications are enabled
+2. Check your OS notification permissions for Termpad
+3. If "Background only" is enabled, notifications won't show when Termpad is focused
+4. Check your OS Do Not Disturb settings
+
+### Too many notifications
+
+**Problem**: Getting spammed with notifications.
+
+**Solutions**:
+1. Increase the cooldown period in settings
+2. Enable "Background only" mode
+3. Disable specific notification types you don't need
+
+## Worktree Issues
+
+### Worktree won't delete
+
+**Problem**: Error when trying to delete a worktree.
+
+**Solutions**:
+1. Make sure no processes are running in the worktree
+2. Close all terminal tabs for that worktree first
+3. Try manually removing the worktree:
+   ```bash
+   git worktree remove path/to/worktree --force
+   ```
+
+### Lost work after worktree delete
+
+**Problem**: Uncommitted changes were lost when deleting a worktree.
+
+**Solution**: Unfortunately, uncommitted changes in a worktree are gone once the worktree is deleted. This cannot be recovered.
+
+**Prevention**: Always commit and push before deleting worktrees. Termpad warns you about uncommitted changes—pay attention to these warnings.
+
+## Still Having Issues?
+
+If your problem isn't listed here:
+
+1. Check the [FAQ](/faq) for more common questions
+2. Search [existing issues](https://github.com/meganide/termpad-releases/issues) on GitHub
+3. [Open a new issue](https://github.com/meganide/termpad-releases/issues/new) with:
+   - Your operating system and version
+   - Steps to reproduce the problem
+   - Any error messages you see
+   - Screenshots if helpful

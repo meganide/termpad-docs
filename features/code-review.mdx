@@ -1,0 +1,164 @@
+---
+title: Code Review
+description: Review AI-generated changes with the built-in diff viewer
+---
+
+# Code Review
+
+Before merging AI-generated code, you need to review it. Termpad includes a built-in diff viewer that makes reviewing changes fast and intuitive.
+
+## Opening the Diff Viewer
+
+<Steps>
+  <Step title="Select a worktree">
+    Click on a worktree in the sidebar.
+  </Step>
+  <Step title="View changes">
+    The file changes panel shows all modified files. Click any file to see the diff.
+  </Step>
+</Steps>
+
+## Understanding the Diff View
+
+The diff viewer shows:
+
+- **Added lines** in green
+- **Removed lines** in red
+- **Modified lines** with both old (red) and new (green) versions
+- **Context lines** in neutral color around changes
+
+### File tree
+
+The left panel shows all changed files organized by folder:
+
+- **M** — Modified file
+- **A** — Added file
+- **D** — Deleted file
+- **R** — Renamed file
+
+Click any file to view its diff.
+
+### Syntax highlighting
+
+Diffs are syntax-highlighted based on file type, making code easier to read and review.
+
+## Reviewing Changes
+
+### Check for common issues
+
+When reviewing AI-generated code, watch for:
+
+- **Security vulnerabilities** — SQL injection, XSS, exposed secrets
+- **Logic errors** — Off-by-one, null checks, edge cases
+- **Code style** — Does it match your project's patterns?
+- **Dependencies** — Did the AI add unnecessary packages?
+- **Tests** — Are there tests for new functionality?
+
+### Adding inline comments
+
+<Steps>
+  <Step title="Click on a line">
+    Click the line number where you want to comment.
+  </Step>
+  <Step title="Write your comment">
+    Describe what needs to change.
+  </Step>
+  <Step title="Copy to AI">
+    Copy the comment to paste into your AI chat for fixes.
+  </Step>
+</Steps>
+
+<Tip>
+  Instead of fixing issues yourself, send them back to the AI. Describe what's wrong and let the AI iterate.
+</Tip>
+
+## Staging Changes
+
+After reviewing, stage the changes you want to keep:
+
+### Stage all changes
+
+Click **Stage All** to stage everything at once.
+
+### Stage individual files
+
+Right-click a file and select **Stage** to stage just that file.
+
+### Stage partial changes
+
+For files where you only want some changes:
+
+1. Open the file diff
+2. Select the lines you want to keep
+3. Click **Stage Selected**
+
+## Creating Commits
+
+<Steps>
+  <Step title="Stage your changes">
+    Stage the files you want to commit.
+  </Step>
+  <Step title="Write a commit message">
+    Enter a clear, descriptive message.
+  </Step>
+  <Step title="Commit">
+    Click **Commit** to create the commit.
+  </Step>
+</Steps>
+
+## Creating Pull Requests
+
+Once your changes are committed:
+
+<Steps>
+  <Step title="Push the branch">
+    Click **Push** to push your commits to the remote.
+  </Step>
+  <Step title="Create PR">
+    Click **Create PR** to open a pull request on GitHub.
+  </Step>
+  <Step title="Review on GitHub">
+    The PR opens in your browser for final review and merge.
+  </Step>
+</Steps>
+
+<Info>
+  Creating PRs requires the GitHub CLI (`gh`) to be installed and authenticated.
+</Info>
+
+## Discarding Changes
+
+If you don't want to keep the changes:
+
+### Discard all changes
+
+Click **Discard All** to revert all files to their last committed state.
+
+### Discard specific files
+
+Right-click a file and select **Discard Changes**.
+
+<Warning>
+  Discarding changes cannot be undone. Make sure you don't need the changes before discarding.
+</Warning>
+
+## Review Workflow Tips
+
+### Review in batches
+
+Don't let changes pile up. Review after each significant AI task:
+
+1. AI completes a feature
+2. Review immediately
+3. Commit good changes
+4. Send issues back to AI
+5. Repeat
+
+### Use multiple worktrees
+
+Run your code review in a separate worktree:
+
+- Worktree 1: AI writes code
+- Worktree 2: You review and test
+
+This keeps your review terminal separate from the AI's workspace.

@@ -1,0 +1,239 @@
+---
+title: Review Changes
+description: Review, stage, commit, and push changes from your worktrees
+---
+
+# Review Changes
+
+After an AI completes work, you need to review the changes before committing. This guide walks through the full review and commit workflow.
+
+## Viewing Changes
+
+### Open the file changes panel
+
+<Steps>
+  <Step title="Select a worktree">
+    Click on the worktree you want to review.
+  </Step>
+  <Step title="View the changes panel">
+    The file changes panel shows on the side. It lists all files with changes.
+  </Step>
+</Steps>
+
+### Understanding file status
+
+Files are marked with their status:
+
+| Icon | Status | Meaning |
+|------|--------|---------|
+| **M** | Modified | File has changes |
+| **A** | Added | New file created |
+| **D** | Deleted | File removed |
+| **R** | Renamed | File moved or renamed |
+| **U** | Untracked | New file not yet tracked |
+
+### View a file diff
+
+Click any file in the changes panel to see its diff:
+
+- **Red lines**: Removed content
+- **Green lines**: Added content
+- **Gray lines**: Unchanged context
+
+## Reviewing Changes
+
+### What to look for
+
+When reviewing AI-generated code, check for:
+
+<AccordionGroup>
+  <Accordion title="Correctness">
+    - Does the code do what was asked?
+    - Are there logic errors?
+    - Are edge cases handled?
+  </Accordion>
+  <Accordion title="Security">
+    - Any hardcoded credentials?
+    - Input validation present?
+    - SQL injection possible?
+    - XSS vulnerabilities?
+  </Accordion>
+  <Accordion title="Quality">
+    - Does it match your code style?
+    - Is it readable?
+    - Are names descriptive?
+  </Accordion>
+  <Accordion title="Completeness">
+    - Are tests included?
+    - Is error handling present?
+    - Documentation updated?
+  </Accordion>
+</AccordionGroup>
+
+### Request changes
+
+If something needs fixing, tell the AI:
+
+```
+The login function doesn't handle the case where the user
+doesn't exist. Please add a check and return an appropriate error.
+```
+
+Let the AI fix issues rather than fixing them yourself.
+
+## Staging Changes
+
+Once you're satisfied with the changes, stage them for commit.
+
+### Stage all changes
+
+Click **Stage All** to stage everything at once.
+
+### Stage individual files
+
+<Steps>
+  <Step title="Find the file">
+    Locate the file in the changes panel.
+  </Step>
+  <Step title="Stage it">
+    Click the **+** icon next to the file, or right-click and select **Stage**.
+  </Step>
+</Steps>
+
+### Unstage files
+
+If you staged something by mistake:
+
+<Steps>
+  <Step title="Find the staged file">
+    Look in the "Staged Changes" section.
+  </Step>
+  <Step title="Unstage it">
+    Click the **-** icon, or right-click and select **Unstage**.
+  </Step>
+</Steps>
+
+## Committing Changes
+
+<Steps>
+  <Step title="Stage your changes">
+    Make sure all files you want to commit are staged.
+  </Step>
+  <Step title="Write a commit message">
+    Enter a clear, descriptive commit message:
+
+    ```
+    Add user authentication with JWT
+
+    - Implement login and register endpoints
+    - Add JWT token generation and validation
+    - Create auth middleware for protected routes
+    - Add tests for auth flows
+    ```
+  </Step>
+  <Step title="Click Commit">
+    Click the **Commit** button to create the commit.
+  </Step>
+</Steps>
+
+### Writing good commit messages
+
+| Good | Poor |
+|------|------|
+| `Add email validation to signup form` | `fix bug` |
+| `Fix null pointer in user service when profile missing` | `updates` |
+| `Refactor API client to use async/await` | `changes` |
+
+## Pushing Changes
+
+After committing, push to the remote:
+
+<Steps>
+  <Step title="Click Push">
+    Click the **Push** button in the toolbar.
+  </Step>
+  <Step title="Authenticate if needed">
+    If prompted, authenticate with your git provider.
+  </Step>
+  <Step title="Confirm success">
+    You should see a success message when the push completes.
+  </Step>
+</Steps>
+
+## Creating a Pull Request
+
+<Steps>
+  <Step title="Push your branch">
+    Make sure your commits are pushed.
+  </Step>
+  <Step title="Click Create PR">
+    Click the **Create PR** button.
+  </Step>
+  <Step title="Fill in PR details">
+    Termpad opens your browser to the PR creation page. Fill in:
+    - Title
+    - Description
+    - Reviewers
+    - Labels
+  </Step>
+  <Step title="Submit">
+    Create the pull request.
+  </Step>
+</Steps>
+
+<Info>
+  Creating PRs requires the GitHub CLI (`gh`) to be installed and authenticated.
+</Info>
+
+## Discarding Changes
+
+If you don't want to keep the changes:
+
+### Discard all changes
+
+<Steps>
+  <Step title="Click Discard All">
+    In the changes panel, click **Discard All**.
+  </Step>
+  <Step title="Confirm">
+    Confirm you want to discard. This cannot be undone.
+  </Step>
+</Steps>
+
+### Discard specific files
+
+<Steps>
+  <Step title="Find the file">
+    Locate the file in the changes panel.
+  </Step>
+  <Step title="Discard it">
+    Right-click and select **Discard Changes**.
+  </Step>
+</Steps>
+
+<Warning>
+  Discarding changes permanently deletes uncommitted work. Make sure you don't need it before discarding.
+</Warning>
+
+## Tips
+
+### Review frequently
+
+Don't let changes pile up. Review after each significant AI task:
+
+1. AI completes a piece of work
+2. Review immediately
+3. Commit if good, or send back for fixes
+4. Continue
+
+### Use atomic commits
+
+Make each commit a logical unit of work:
+
+- One feature per commit
+- One bug fix per commit
+- Don't mix unrelated changes
+
+### Keep the main terminal visible
+
+While reviewing, keep the AI terminal visible. If you find issues, you can immediately ask for fixes.

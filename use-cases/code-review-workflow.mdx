@@ -1,0 +1,214 @@
+---
+title: Code Review Workflow
+description: Use AI to review code while you continue development
+---
+
+# Code Review Workflow
+
+Code review is essential but time-consuming. With Termpad, you can have an AI review code in one worktree while you continue development in another.
+
+## AI-Assisted Code Review
+
+Instead of manually reviewing every line, delegate initial review to an AI:
+
+- **Worktree 1**: You continue building features
+- **Worktree 2**: AI reviews a pull request
+
+The AI flags issues, suggests improvements, and identifies potential bugs. You then review the AI's findings—much faster than reviewing everything yourself.
+
+## Setting Up Review Worktrees
+
+### Create a review worktree
+
+<Steps>
+  <Step title="Create a new worktree">
+    Create a worktree for the branch you want to review.
+  </Step>
+  <Step title="Give the AI review instructions">
+    ```
+    Review this branch against main. Check for:
+    - Logic errors and bugs
+    - Security vulnerabilities
+    - Performance issues
+    - Code style inconsistencies
+    - Missing error handling
+    - Missing tests
+
+    Provide a summary of findings with file:line references.
+    ```
+  </Step>
+  <Step title="Let the AI analyze">
+    The AI reads through the changes and produces a report.
+  </Step>
+</Steps>
+
+### Review the AI's findings
+
+Once the AI completes its review:
+
+1. Read through the findings
+2. Verify legitimate issues (AI can have false positives)
+3. Add comments to the PR or fix issues directly
+4. Request changes or approve
+
+## Review Prompts by Type
+
+### Security review
+
+```
+Perform a security audit of this branch. Look for:
+- SQL injection vulnerabilities
+- XSS attack vectors
+- Authentication/authorization issues
+- Exposed secrets or credentials
+- Insecure data handling
+- CSRF vulnerabilities
+
+For each issue, explain the risk and how to fix it.
+```
+
+### Performance review
+
+```
+Review this code for performance issues:
+- N+1 queries
+- Unnecessary re-renders
+- Missing memoization
+- Large bundle imports
+- Inefficient algorithms
+- Memory leaks
+
+Suggest specific optimizations for each issue found.
+```
+
+### Architecture review
+
+```
+Review the architecture of these changes:
+- Does it follow existing patterns?
+- Is the code properly organized?
+- Are concerns properly separated?
+- Is the API design consistent?
+- Are there any coupling issues?
+
+Suggest improvements for maintainability.
+```
+
+### Test coverage review
+
+```
+Analyze test coverage for this branch:
+- What functionality is untested?
+- Are edge cases covered?
+- Are error paths tested?
+- Is mocking done correctly?
+
+List specific test cases that should be added.
+```
+
+## Continuous Review Workflow
+
+For ongoing development, set up a continuous review workflow:
+
+<Steps>
+  <Step title="Development worktree">
+    Work on your feature in worktree 1.
+  </Step>
+  <Step title="Commit regularly">
+    Make small, focused commits as you progress.
+  </Step>
+  <Step title="Review worktree">
+    Periodically, have worktree 2 review your latest commits:
+
+    ```
+    Review the last 3 commits. What issues do you see?
+    ```
+  </Step>
+  <Step title="Iterate">
+    Fix issues before they pile up.
+  </Step>
+</Steps>
+
+This catches issues early when they're easy to fix.
+
+## Team Code Review
+
+Termpad can also help with reviewing teammates' code:
+
+### Review a PR from your team
+
+<Steps>
+  <Step title="Fetch the PR branch">
+    ```bash
+    gh pr checkout 123
+    ```
+  </Step>
+  <Step title="Create a review worktree">
+    Create a worktree for that branch.
+  </Step>
+  <Step title="AI initial review">
+    Have the AI do an initial pass and document findings.
+  </Step>
+  <Step title="Your review">
+    Review the AI's findings plus anything the AI might have missed.
+  </Step>
+  <Step title="Submit review">
+    Add comments to the PR with combined feedback.
+  </Step>
+</Steps>
+
+### Review multiple PRs
+
+With parallel worktrees, review several PRs at once:
+
+| Worktree | PR | Status |
+|---------|-----|--------|
+| Worktree 1 | #123 - Auth refactor | AI reviewing |
+| Worktree 2 | #125 - New API endpoint | AI reviewing |
+| Worktree 3 | #127 - UI updates | Ready for your review |
+
+## Tips for AI Code Review
+
+### Be specific about what to review
+
+Generic "review this code" prompts produce generic results. Be specific:
+
+```
+Review the error handling in src/api/. Specifically check:
+- Are all errors caught?
+- Are error messages user-friendly?
+- Is sensitive information logged?
+- Are errors properly propagated?
+```
+
+### Provide context
+
+Tell the AI about your project's standards:
+
+```
+Our code style:
+- We use early returns
+- Max function length is 30 lines
+- All public functions need JSDoc
+- We prefer composition over inheritance
+
+Review against these standards.
+```
+
+### Trust but verify
+
+AI reviews are helpful but not infallible:
+
+- **False positives**: AI may flag correct code as problematic
+- **False negatives**: AI may miss issues
+- **Context gaps**: AI doesn't know your business logic
+
+Always do a final human review before merging.
+
+### Use review findings for learning
+
+When AI consistently finds the same issues:
+
+1. Document the pattern in your style guide
+2. Add linting rules if possible
+3. Share learnings with your team

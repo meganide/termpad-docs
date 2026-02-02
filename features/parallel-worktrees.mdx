@@ -1,0 +1,118 @@
+---
+title: Parallel Worktrees
+description: Run multiple AI coding agents simultaneously in isolated workspaces
+---
+
+# Parallel Worktrees
+
+The core feature of Termpad is the ability to run multiple AI coding agents at the same time, each working on different tasks without interfering with each other.
+
+## The Problem with Sequential Work
+
+Traditional AI coding workflows are sequential:
+
+1. Give an AI a task
+2. Wait for it to finish
+3. Review the changes
+4. Start the next task
+
+This wastes time. While one AI builds a feature, you could be tackling two more tasks in parallel.
+
+## How Parallel Worktrees Work
+
+Each worktree in Termpad is a completely isolated environment:
+
+| Component | Isolation |
+|-----------|-----------|
+| Git worktree | Each worktree has its own copy of the codebase |
+| Terminal | Separate terminal instance per worktree |
+| Branch | Each worktree works on its own branch |
+| Ports | Configurable port assignments to avoid conflicts |
+
+<Info>
+  Worktrees share the same git history, but file changes are isolated until you merge.
+</Info>
+
+## Creating Worktrees
+
+To create a new parallel worktree:
+
+<Steps>
+  <Step title="Select your project">
+    Click on a project in the sidebar.
+  </Step>
+  <Step title="Click Add Worktree">
+    Click the **Add Worktree** button or use the keyboard shortcut.
+  </Step>
+  <Step title="Name the branch">
+    Enter a descriptive branch name like `feature/auth` or `fix/login-bug`.
+  </Step>
+  <Step title="Start working">
+    The worktree opens with a terminal ready for your AI agent.
+  </Step>
+</Steps>
+
+## Worktree Status
+
+The sidebar shows the status of each worktree:
+
+- **Running** — An AI agent is actively working
+- **Waiting** — The AI needs input from you
+- **Idle** — No active processes
+
+This helps you track progress across all your parallel tasks without switching contexts.
+
+## Best Practices
+
+### Start with independent tasks
+
+For best results, choose tasks that don't overlap:
+
+<Tabs>
+  <Tab title="Good">
+    - Worktree 1: Build login page
+    - Worktree 2: Build settings page
+    - Worktree 3: Add API rate limiting
+
+    These tasks touch different files and won't conflict.
+  </Tab>
+  <Tab title="Avoid">
+    - Worktree 1: Refactor user model
+    - Worktree 2: Add user preferences
+
+    These might both modify the same files, causing merge conflicts later.
+  </Tab>
+</Tabs>
+
+### Keep worktrees focused
+
+Give each worktree a single, well-defined task. This makes:
+
+- Progress easier to track
+- Changes easier to review
+- Merges cleaner
+
+### Monitor resource usage
+
+Each worktree uses memory and CPU. On most machines, 3-5 active AI worktrees work well. Watch your system resources if you notice slowdowns.
+
+## Switching Between Worktrees
+
+Click any worktree in the sidebar to switch to it. The terminal and file changes panel update to show that worktree's state.
+
+You can also:
+
+- **Right-click** a worktree for more options
+- Use **keyboard shortcuts** to navigate quickly
+- **Drag and drop** to reorder worktrees
+
+## Merging Work
+
+When a worktree's task is complete:
+
+1. Review the changes in the diff viewer
+2. Commit and push the branch
+3. Create a PR (Termpad can do this with one click)
+4. Delete the worktree to clean up the worktree
+
+See [Review Changes](/guides/review-changes) for a detailed walkthrough.

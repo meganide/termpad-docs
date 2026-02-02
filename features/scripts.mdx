@@ -1,0 +1,191 @@
+---
+title: Scripts
+description: Automate setup, run commands, and cleanup with project scripts
+---
+
+# Scripts
+
+Termpad lets you configure scripts that run automatically at key moments in your workflow. This eliminates repetitive manual steps and ensures consistent environments across worktrees.
+
+## Script Types
+
+### Setup Scripts
+
+Run when a new worktree is created. Use these to:
+
+- Install dependencies (`npm install`, `pip install -r requirements.txt`)
+- Set up environment files
+- Build initial assets
+- Start background services
+
+### Run Scripts
+
+Manually triggered commands for common tasks. Create run scripts for:
+
+- Starting your dev server
+- Running tests
+- Building the project
+- Linting or formatting code
+
+### Cleanup Scripts
+
+Run when a worktree is deleted. Use these to:
+
+- Stop running processes
+- Remove build artifacts
+- Clean up temporary files
+- Reset environment state
+
+## Configuring Scripts
+
+<Steps>
+  <Step title="Select a project">
+    Click on a project in the sidebar.
+  </Step>
+  <Step title="Open project settings">
+    Click the gear icon next to the project name.
+  </Step>
+  <Step title="Add your scripts">
+    Enter commands for setup, run, and cleanup scripts.
+  </Step>
+</Steps>
+
+## Example Configurations
+
+<Tabs>
+  <Tab title="Node.js">
+    **Setup script:**
+    ```bash
+    npm install
+    ```
+
+    **Run scripts:**
+    ```bash
+    # Dev server
+    npm run dev
+
+    # Tests
+    npm test
+
+    # Build
+    npm run build
+    ```
+
+    **Cleanup script:**
+    ```bash
+    rm -rf node_modules/.cache
+    ```
+  </Tab>
+  <Tab title="Python">
+    **Setup script:**
+    ```bash
+    python -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt
+    ```
+
+    **Run scripts:**
+    ```bash
+    # Dev server
+    python manage.py runserver
+
+    # Tests
+    pytest
+
+    # Migrations
+    python manage.py migrate
+    ```
+
+    **Cleanup script:**
+    ```bash
+    rm -rf __pycache__ .pytest_cache
+    ```
+  </Tab>
+  <Tab title="Rust">
+    **Setup script:**
+    ```bash
+    cargo fetch
+    ```
+
+    **Run scripts:**
+    ```bash
+    # Dev
+    cargo run
+
+    # Tests
+    cargo test
+
+    # Build release
+    cargo build --release
+    ```
+
+    **Cleanup script:**
+    ```bash
+    cargo clean
+    ```
+  </Tab>
+</Tabs>
+
+## Smart Port Management
+
+When running dev servers across multiple worktrees, port conflicts are common. Termpad helps with this:
+
+### Automatic port assignment
+
+Configure your run scripts to use environment variables for ports:
+
+```bash
+PORT=$TERMPAD_PORT npm run dev
+```
+
+Each worktree gets a unique port assigned to `$TERMPAD_PORT`.
+
+### Exclusive mode
+
+Some dev servers can't run multiple instances. Enable **exclusive mode** for these scripts:
+
+<Steps>
+  <Step title="Edit the run script">
+    Open the script configuration.
+  </Step>
+  <Step title="Enable exclusive mode">
+    Check the "Exclusive" option.
+  </Step>
+</Steps>
+
+When you run an exclusive script, Termpad automatically stops any other running instances across all worktrees.
+
+<Warning>
+  Exclusive mode kills the script in other worktrees. Use it only for scripts that truly can't run in parallel.
+</Warning>
+
+## Running Scripts
+
+### Run scripts manually
+
+1. Select a worktree
+2. Click the **Run** button in the toolbar
+3. Choose which script to run
+
+### Quick access
+
+Create keyboard shortcuts for frequently used scripts in **Settings > Keyboard**.
+
+## Script Output
+
+Script output appears in the terminal. For setup and cleanup scripts, Termpad shows a progress indicator while they run.
+
+<Tip>
+  Keep setup scripts fast. Long setup times slow down your ability to create new worktrees quickly.
+</Tip>
+
+## Environment Variables
+
+Scripts have access to these Termpad-provided variables:
+
+| Variable | Description |
+|----------|-------------|
+| `TERMPAD_SESSION` | Current worktree name |
+| `TERMPAD_BRANCH` | Current git branch |
+| `TERMPAD_PORT` | Assigned unique port (if configured) |
+| `TERMPAD_WORKTREE` | Path to the worktree directory |

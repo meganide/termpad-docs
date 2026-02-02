@@ -1,0 +1,136 @@
+---
+title: Terminal Management
+description: Work with multiple terminals, tabs, and presets in Termpad
+---
+
+# Terminal Management
+
+Termpad includes a full-featured terminal emulator with support for multiple tabs, shell presets, and cross-platform compatibility.
+
+## Terminal Tabs
+
+Each worktree can have multiple terminal tabs:
+
+- **Main terminal** — Where your AI agent runs
+- **User terminals** — Additional terminals for running dev servers, tests, or other tools
+
+### Creating tabs
+
+Click the **+** button in the terminal area to create a new tab. You can:
+
+- Open a plain shell
+- Use a preset (see below)
+- Run a specific command
+
+### Managing tabs
+
+- **Drag and drop** tabs to reorder them
+- **Right-click** a tab for options (rename, close, duplicate)
+- **Click the X** to close a tab
+
+## Shell Support
+
+Termpad auto-detects available shells on your system:
+
+| Platform | Shells |
+|----------|--------|
+| Windows | PowerShell, Command Prompt, Git Bash, WSL |
+| macOS | Zsh, Bash, Fish |
+| Linux | Bash, Zsh, Fish, and others |
+
+### Changing the default shell
+
+<Steps>
+  <Step title="Open Settings">
+    Click the gear icon or press the settings shortcut.
+  </Step>
+  <Step title="Go to Terminal settings">
+    Find the terminal configuration section.
+  </Step>
+  <Step title="Select your shell">
+    Choose your preferred default shell from the dropdown.
+  </Step>
+</Steps>
+
+### Adding custom shells
+
+If your shell isn't detected automatically:
+
+<Steps>
+  <Step title="Open Settings">
+    Navigate to terminal settings.
+  </Step>
+  <Step title="Click Add Shell">
+    Open the custom shell dialog.
+  </Step>
+  <Step title="Configure the shell">
+    Enter the shell name, path to the executable, and any arguments.
+  </Step>
+</Steps>
+
+## Terminal Presets
+
+Presets let you create new terminals with predefined commands. Common uses:
+
+- **Claude preset** — Opens a terminal and runs `claude`
+- **Gemini preset** — Opens a terminal and runs `gemini`
+- **Dev server preset** — Starts your development server
+- **Test preset** — Runs your test suite
+
+### Creating a preset
+
+<Steps>
+  <Step title="Open Settings">
+    Navigate to terminal presets.
+  </Step>
+  <Step title="Click Add Preset">
+    Open the preset creation dialog.
+  </Step>
+  <Step title="Configure the preset">
+    Enter a name, icon, and the command to run.
+  </Step>
+</Steps>
+
+### Using presets
+
+When creating a new terminal tab, select a preset from the dropdown. The terminal opens and immediately runs your configured command.
+
+<Tip>
+  Create presets for your most common AI tools so you can start new worktrees faster.
+</Tip>
+
+## Terminal Themes
+
+Termpad supports multiple color themes for the terminal:
+
+- Dracula
+- One Dark
+- Nord
+- Solarized
+- And more
+
+Change the theme in **Settings > Terminal > Theme**.
+
+## Keyboard Shortcuts
+
+Common terminal shortcuts:
+
+| Action | Shortcut |
+|--------|----------|
+| New tab | `Ctrl+T` / `Cmd+T` |
+| Close tab | `Ctrl+W` / `Cmd+W` |
+| Next tab | `Ctrl+Tab` |
+| Previous tab | `Ctrl+Shift+Tab` |
+| Clear terminal | `Ctrl+L` / `Cmd+K` |
+| Copy | `Ctrl+C` / `Cmd+C` (when text selected) |
+| Paste | `Ctrl+V` / `Cmd+V` |
+
+## WSL Support (Windows)
+
+Termpad fully supports Windows Subsystem for Linux:
+
+- Automatically detects installed WSL distributions
+- Opens terminals directly in your WSL environment
+- Handles path translation between Windows and Linux
+
+To use WSL as your default shell, select it in **Settings > Terminal > Default Shell**.
