@@ -73,8 +73,13 @@
         },
         {
           "anchor": "Releases",
-          "href": "https://github.com/meganide/termpad-releases/releases",
+          "href": "https://github.com/meganide/termpad/releases",
           "icon": "github"
+        },
+        {
+          "anchor": "Source Code",
+          "href": "https://github.com/meganide/termpad",
+          "icon": "code"
         }
       ]
     }
@@ -93,7 +98,7 @@
     "primary": {
       "type": "button",
       "label": "Download",
-      "href": "https://github.com/meganide/termpad-releases/releases"
+      "href": "https://github.com/meganide/termpad/releases"
     }
   },
   "contextual": {
@@ -111,7 +116,7 @@
   "footer": {
     "socials": {
       "x": "https://x.com/renas_dev",
-      "github": "https://github.com/meganide/termpad-releases/releases"
+      "github": "https://github.com/meganide/termpad"
     }
   }
 }
