@@ -1,0 +1,151 @@
+---
+title: Shared Config
+description: Share script configuration with your team using termpad.json
+---
+
+Share your project's Termpad scripts with teammates by adding a `termpad.json` file to the repository root. Everyone who opens the project in Termpad gets the same setup, run, and cleanup scripts automatically.
+
+## Quick Start
+
+Create a `termpad.json` file in your repository root:
+
+```json
+{
+  "setupScript": "npm install",
+  "runScripts": [
+    { "name": "Dev Server", "command": "npm run dev" },
+    { "name": "Tests", "command": "npm test" }
+  ],
+  "cleanupScript": null,
+  "exclusiveMode": false
+}
+```
+
+Commit it to your repo. When a teammate opens this project in Termpad for the first time, the scripts are applied automatically.
+
+## File Format
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `setupScript` | `string \| null` | Runs when creating a new worktree |
+| `runScripts` | `array` | Scripts available via the Run button |
+| `cleanupScript` | `string \| null` | Runs after deleting a worktree |
+| `exclusiveMode` | `boolean` | Kill other instances of a script before running |
+
+Each entry in `runScripts` has:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `name` | `string` | Display name shown in the Run dropdown |
+| `command` | `string` | Shell command to execute |
+
+## How It Works
+
+### First time opening a project
+
+When someone opens a project that has a `termpad.json` and they haven't configured any scripts yet, Termpad automatically applies the shared config. No manual action needed.
+
+### After scripts are configured
+
+Once a user has scripts configured (either from the shared config or their own edits), Termpad never overwrites them automatically. The user's local scripts always take precedence.
+
+### Syncing updates
+
+When `termpad.json` changes (e.g., after a `git pull`), Termpad detects the update. A **Sync from termpad.json** button appears on the Scripts settings page with a notification badge.
+
+Clicking the button replaces your current scripts with the latest version from `termpad.json`.
+
+<Warning>
+  Syncing overwrites all your local script changes with the contents of `termpad.json`.
+</Warning>
+
+## Examples
+
+### Node.js project
+
+```json
+{
+  "setupScript": "cp $TERMPAD_ROOT_PATH/.env .env\nnpm install",
+  "runScripts": [
+    { "name": "Dev Server", "command": "npm run dev -- --port $TERMPAD_PORT" },
+    { "name": "Tests", "command": "npm test" },
+    { "name": "Lint", "command": "npm run lint" },
+    { "name": "Build", "command": "npm run build" }
+  ],
+  "cleanupScript": null,
+  "exclusiveMode": false
+}
+```
+
+### Python project
+
+```json
+{
+  "setupScript": "python -m venv .venv\nsource .venv/bin/activate\npip install -r requirements.txt",
+  "runScripts": [
+    { "name": "Run Server", "command": "source .venv/bin/activate && python manage.py runserver $TERMPAD_PORT" },
+    { "name": "Tests", "command": "source .venv/bin/activate && pytest" },
+    { "name": "Migrations", "command": "source .venv/bin/activate && python manage.py migrate" }
+  ],
+  "cleanupScript": null,
+  "exclusiveMode": false
+}
+```
+
+### Monorepo with Docker
+
+```json
+{
+  "setupScript": "npm install\ndocker-compose up -d postgres redis",
+  "runScripts": [
+    { "name": "API", "command": "npm run dev:api -- --port $TERMPAD_PORT" },
+    { "name": "Web", "command": "npm run dev:web" },
+    { "name": "Tests", "command": "npm test" }
+  ],
+  "cleanupScript": "docker-compose down",
+  "exclusiveMode": true
+}
+```
+
+## Multiline Scripts
+
+Use `\n` for multiline scripts in JSON:
+
+```json
+{
+  "setupScript": "npm install\ncp .env.example .env\nnpm run db:migrate"
+}
+```
+
+Each line runs as a separate command in the terminal.
+
+## Environment Variables
+
+All [Termpad environment variables](/guides/configure-scripts#environment-variables) are available in `termpad.json` scripts:
+
+| Variable | Description |
+|----------|-------------|
+| `$TERMPAD_WORKSPACE_NAME` | Workspace name |
+| `$TERMPAD_WORKSPACE_PATH` | Workspace path |
+| `$TERMPAD_ROOT_PATH` | Repository root directory path |
+| `$TERMPAD_PORT` | Unique port for this worktree |
+
+## Tips
+
+### Commit the file
+
+Add `termpad.json` to version control so the whole team benefits. It's a small JSON file with no secrets.
+
+### Keep secrets out
+
+Don't put API keys or passwords in `termpad.json`. Reference `.env` files instead:
+
+```json
+{
+  "setupScript": "cp $TERMPAD_ROOT_PATH/.env .env"
+}
+```
+
+### Use with port management
+
+Combine `$TERMPAD_PORT` with `exclusiveMode: false` to let multiple worktrees run dev servers simultaneously on different ports.

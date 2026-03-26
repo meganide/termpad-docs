@@ -4,6 +4,16 @@ description: Product updates and announcements for Termpad
 rss: true
 ---
 
+<Update label="v0.5.0" description="2026-03-26" tags={["Features"]}>
+  **Features**
+  - Add shared `termpad.json` config file for team script sharing. Place a `termpad.json` at your repository root to define setup, run, and cleanup scripts that are automatically applied when teammates open the project for the first time.
+  - Auto-detect changes to `termpad.json` (e.g., after `git pull`) and show a sync button with notification badge on the Scripts settings page
+  - User's local script changes always take precedence over the shared config
+
+  **Fixes**
+  - Fix state corruption when saving settings that could cause script changes to not persist across restarts
+</Update>
+
 <Update label="v0.4.0" description="2026-03-25" tags={["Features"]}>
   **Features**
   - Add notes feature with WYSIWYG rich text editor at both repository and worktree level
