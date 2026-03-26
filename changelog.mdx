@@ -4,6 +4,11 @@ description: Product updates and announcements for Termpad
 rss: true
 ---
 
+<Update label="v0.5.1" description="2026-03-26" tags={["Fixes"]}>
+  **Fixes**
+  - Fix terminal scroll position jumping to top during resize/reflow. When xterm.js reflows content (e.g., due to a container resize triggering `fitAddon.fit()`), the viewport scroll position could reset to line 0. This caused the terminal to jump to the top when the user had scrolled up, particularly noticeable when Claude Code was producing lots of output. The scroll position is now saved before fit and restored afterward, preserving the user's scroll position.
+</Update>
+
 <Update label="v0.5.0" description="2026-03-26" tags={["Features"]}>
   **Features**
   - Add shared `termpad.json` config file for team script sharing. Place a `termpad.json` at your repository root to define setup, run, and cleanup scripts that teammates can apply with one click.
