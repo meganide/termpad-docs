@@ -41,19 +41,15 @@ Each entry in `runScripts` has:
 
 ## How It Works
 
-### First time opening a project
+### Opening a project with termpad.json
 
-When someone opens a project that has a `termpad.json` and they haven't configured any scripts yet, Termpad automatically applies the shared config. No manual action needed.
+Termpad never auto-applies the shared config. When a `termpad.json` is detected, a **Sync from termpad.json** button appears on the Scripts settings page with a notification badge indicating there are scripts available to apply.
 
-### After scripts are configured
-
-Once a user has scripts configured (either from the shared config or their own edits), Termpad never overwrites them automatically. The user's local scripts always take precedence.
+Click the button to review and apply the shared scripts.
 
 ### Syncing updates
 
-When `termpad.json` changes (e.g., after a `git pull`), Termpad detects the update. A **Sync from termpad.json** button appears on the Scripts settings page with a notification badge.
-
-Clicking the button replaces your current scripts with the latest version from `termpad.json`.
+When `termpad.json` changes (e.g., after a `git pull`), Termpad detects the update and shows the notification badge again on the sync button.
 
 <Warning>
   Syncing overwrites all your local script changes with the contents of `termpad.json`.
